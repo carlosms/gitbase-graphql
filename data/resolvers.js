@@ -48,10 +48,20 @@ const resolvers = {
     repository(ref) {
       return { id: ref.repository_id };
     },
-    commits(ref) {
+    commits(ref, args) {
       return mysql.then(connection => {
+        let sql = `SELECT * FROM commits WHERE hash='${ref.hash}'`;
+
+        if (args.authorName){
+          sql += ` AND author_name='${args.authorName}'`;
+        }
+
+        if (args.authorEmail) {
+          sql += ` AND author_email='${args.authorEmail}'`;
+        }
+
         return connection
-          .query(`SELECT * FROM commits WHERE hash='${ref.hash}'`)
+          .query(sql)
           .then(rows => {
             return rows.map(r => {
               return {
@@ -65,8 +75,10 @@ const resolvers = {
                 message: r.message,
                 treeHash: r.tree_hash
               };
-            });
-          });
+            })
+          }).catch(function(e) {
+              return [];
+            });;
       });
     }
   }

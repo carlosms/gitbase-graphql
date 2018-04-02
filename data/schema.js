@@ -16,7 +16,7 @@ type Ref {
   repository: Repository!
   name: String!
   hash: String!
-  commits(authorName: String, authorEmail: String): [Commit!]!
+  commits(authorName: String, authorEmail: String): [Commit]!
 }
 
 type Commit {
