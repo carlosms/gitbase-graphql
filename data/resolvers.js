@@ -122,8 +122,33 @@ const resolvers = {
   },
 
   Remote: {
-    repository(ref) {
-      return { id: ref.repository_id };
+    repository(remote) {
+      return { id: remote.repository_id };
+    }
+  },
+
+  Commit: {
+    blobs(commit) {
+      return mysql.then(connection => {
+        let sql = `SELECT * FROM blobs WHERE commit_has_blob('${commit.hash}', hash)`;
+
+        console.debug(sql)
+
+        return connection
+          .query(sql)
+          .then(rows => {
+            return rows.map(r => {
+              return {
+                hash: r.hash,
+                size: r.size,
+                content: r.content
+              }
+            });
+          })
+          .catch(function(e) {
+            return [];
+          });
+      });
     }
   }
 };

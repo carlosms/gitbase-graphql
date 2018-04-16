@@ -32,6 +32,7 @@ type Commit {
   committerWhen: String!   # TODO: type TIMESTAMP in the DB
   message: String!
   treeHash: String
+  blobs: [Blob]!
   # TODO: relation with Ref
 }
 
@@ -42,6 +43,12 @@ type Remote {
   fetchUrl: String!
   pushRefspec: String!
   fetchRefspec: String!
+}
+
+type Blob {
+  hash: String!
+  size: Int! # Note: the graphql Int type is int32, but size is int64 in mysql
+  content: String! # Note: mysql BLOB type
 }
 `;
 
