@@ -132,8 +132,6 @@ const resolvers = {
       return mysql.then(connection => {
         let sql = `SELECT * FROM blobs WHERE commit_has_blob('${commit.hash}', hash)`;
 
-        console.debug(sql)
-
         return connection
           .query(sql)
           .then(rows => {
@@ -143,6 +141,30 @@ const resolvers = {
                 size: r.size,
                 content: r.content
               }
+            });
+          })
+          .catch(function(e) {
+            return [];
+          });
+      });
+    }
+  },
+
+  Blob: {
+    treeEntries(blob) {
+      return mysql.then(connection => {
+        let sql = `SELECT * FROM tree_entries WHERE entry_hash='${blob.hash}'`;
+
+        return connection
+          .query(sql)
+          .then(rows => {
+            return rows.map(r => {
+              return {
+                treeHash: r.tree_hash,
+                entryHash: r.entry_hash,
+                mode: r.mode,
+                name: r.name
+              };
             });
           })
           .catch(function(e) {

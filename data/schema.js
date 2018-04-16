@@ -49,6 +49,14 @@ type Blob {
   hash: String!
   size: Int! # Note: the graphql Int type is int32, but size is int64 in mysql
   content: String! # Note: mysql BLOB type
+  treeEntries: [TreeEntry]!
+}
+
+type TreeEntry {
+  treeHash: String!
+  entryHash: String!
+  mode: String!
+  name: String!
 }
 `;
 
