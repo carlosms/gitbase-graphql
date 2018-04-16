@@ -57,6 +57,7 @@ type TreeEntry {
   entryHash: String!
   mode: String!
   name: String!
+  language: String!
 }
 `;
 

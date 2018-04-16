@@ -153,7 +153,10 @@ const resolvers = {
   Blob: {
     treeEntries(blob) {
       return mysql.then(connection => {
-        let sql = `SELECT * FROM tree_entries WHERE entry_hash='${blob.hash}'`;
+        let sql = `SELECT
+        tree_hash, entry_hash, mode, name, language(name) AS language
+        FROM tree_entries
+        WHERE entry_hash='${blob.hash}'`;
 
         return connection
           .query(sql)
@@ -163,7 +166,8 @@ const resolvers = {
                 treeHash: r.tree_hash,
                 entryHash: r.entry_hash,
                 mode: r.mode,
-                name: r.name
+                name: r.name,
+                language: r.language
               };
             });
           })
