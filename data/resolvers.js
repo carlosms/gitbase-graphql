@@ -24,11 +24,22 @@ const resolvers = {
   },
 
   Repository: {
-    refs(repository, args) {
+    refs(repository, args, context, info) {
       return mysql.then(connection => {
-        let sql = `SELECT name, hash FROM refs WHERE repository_id='${repository.id}'`;
-        if (args.name) {
+        let sql = `
+        SELECT name, hash,
+        is_remote(name) AS is_remote,
+        is_tag(name) AS is_tag
+        FROM refs WHERE repository_id='${repository.id}'`;
+
+        if (args.name !== undefined) {
           sql += ` AND name='${args.name}'`;
+        }
+        if (args.isRemote !== undefined) {
+          sql += ` AND is_remote(name)=${args.isRemote}`;
+        }
+        if (args.isTag !== undefined) {
+          sql += ` AND is_tag(name)=${args.isTag}`;
         }
 
         return connection.query(sql).then(rows => {
@@ -36,7 +47,9 @@ const resolvers = {
             return {
               name: r.name,
               hash: r.hash,
-              repository_id: repository.id
+              repository_id: repository.id,
+              isRemote: r.is_remote.toString() === "1", // type Buffer
+              isTag: r.is_tag.toString() === "1"        // type Buffer
             };
           });
         });
@@ -52,7 +65,7 @@ const resolvers = {
       return mysql.then(connection => {
         let sql = `SELECT * FROM commits WHERE hash='${ref.hash}'`;
 
-        if (args.authorName){
+        if (args.authorName) {
           sql += ` AND author_name='${args.authorName}'`;
         }
 
@@ -75,10 +88,11 @@ const resolvers = {
                 message: r.message,
                 treeHash: r.tree_hash
               };
-            })
-          }).catch(function(e) {
-              return [];
-            });;
+            });
+          })
+          .catch(function(e) {
+            return [];
+          });
       });
     }
   }

@@ -9,7 +9,7 @@ type Query {
 
 type Repository {
   id: String!
-  refs(name: String): [Ref]!
+  refs(name: String, isRemote: Boolean, isTag: Boolean): [Ref]!
 }
 
 type Ref {
@@ -17,6 +17,8 @@ type Ref {
   name: String!
   hash: String!
   commits(authorName: String, authorEmail: String): [Commit]!
+  isRemote: Boolean!
+  isTag: Boolean!
 }
 
 type Commit {
