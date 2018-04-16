@@ -49,7 +49,31 @@ const resolvers = {
               hash: r.hash,
               repository_id: repository.id,
               isRemote: r.is_remote.toString() === "1", // type Buffer
-              isTag: r.is_tag.toString() === "1"        // type Buffer
+              isTag: r.is_tag.toString() === "1" // type Buffer
+            };
+          });
+        });
+      });
+    },
+    remotes(repository, args, context, info) {
+      return mysql.then(connection => {
+        let sql = `
+        SELECT name, push_url, fetch_url, push_refspec, fetch_refspec
+        FROM remotes WHERE repository_id='${repository.id}'`;
+
+        if (args.name !== undefined) {
+          sql += ` AND name='${args.name}'`;
+        }
+
+        return connection.query(sql).then(rows => {
+          return rows.map(r => {
+            return {
+              repository_id: repository.id,
+              name: r.name,
+              pushUrl: r.push_url,
+              fetchUrl: r.fetch_url,
+              pushRefspec: r.push_refspec,
+              fetchRefspec: r.fetch_refspec
             };
           });
         });
@@ -94,6 +118,12 @@ const resolvers = {
             return [];
           });
       });
+    }
+  },
+
+  Remote: {
+    repository(ref) {
+      return { id: ref.repository_id };
     }
   }
 };

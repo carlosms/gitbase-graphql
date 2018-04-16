@@ -10,6 +10,7 @@ type Query {
 type Repository {
   id: String!
   refs(name: String, isRemote: Boolean, isTag: Boolean): [Ref]!
+  remotes(name: String): [Remote]!
 }
 
 type Ref {
@@ -32,6 +33,15 @@ type Commit {
   message: String!
   treeHash: String
   # TODO: relation with Ref
+}
+
+type Remote {
+  repository: Repository!
+  name: String!
+  pushUrl: String!
+  fetchUrl: String!
+  pushRefspec: String!
+  fetchRefspec: String!
 }
 `;
 
