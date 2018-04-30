@@ -219,11 +219,15 @@ const resolvers = {
           .then(rows => {
             // This should be only one row
             if (rows.length > 0) {
-              let arr = JSON.parse(rows[0].uast);
+              const arr = JSON.parse(rows[0].uast);
 
               return arr.map(e => {
-                let decoded = bblfshUAST.Node.decode(e);
-                return JSON.stringify(decoded, function(key, value) {
+                const decoded = bblfshUAST.Node.decode(e);
+
+                // graphql-type-json will try to stringify, and it will fail
+                // because of circular references
+
+                const st = JSON.stringify(decoded, function(key, value) {
                   // skip properties, it contains circular references (builder, parent)
                   if (key === "properties") {
                     return;
@@ -231,6 +235,10 @@ const resolvers = {
 
                   return value;
                 });
+
+                // Parse back to json, otherwise graphql-type-json will return
+                // a string
+                return JSON.parse(st);
               });
             }
 
