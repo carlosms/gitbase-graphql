@@ -1,6 +1,5 @@
 import { makeExecutableSchema } from 'graphql-tools';
-import GraphQLJSON from "graphql-type-json";
-import resolvers from "./resolvers";
+import resolvers from './resolvers';
 
 const typeDefs = `
 scalar JSON
