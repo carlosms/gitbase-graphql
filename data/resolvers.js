@@ -1,5 +1,19 @@
 import mysql from "./connectors";
 
+const PROTO_PATH = __dirname + "/../proto/generated.proto";
+
+const grpc = require("grpc");
+const bblfshUAST = grpc.load(PROTO_PATH).gopkg.in.bblfsh.sdk.v1.uast;
+
+
+function logErr(e) {
+  if (e.sqlMessage) {
+    console.debug(`Failure. Query: ${e.sql}; error message: ${e.sqlMessage}`);
+  } else {
+    console.debug(e);
+  }
+}
+
 const resolvers = {
   Query: {
     repository(root, args) {
@@ -115,6 +129,7 @@ const resolvers = {
             });
           })
           .catch(function(e) {
+            logErr(e);
             return [];
           });
       });
@@ -144,10 +159,11 @@ const resolvers = {
                 hash: r.hash,
                 size: r.size,
                 content: r.content
-              }
+              };
             });
           })
           .catch(function(e) {
+            logErr(e);
             return [];
           });
       });
@@ -176,6 +192,52 @@ const resolvers = {
             });
           })
           .catch(function(e) {
+            logErr(e);
+            return [];
+          });
+      });
+    },
+    uast(blob, args) {
+      return mysql.then(connection => {
+        let uastArgs = `blobs.content`;
+
+        if (args.language || args.xpath) {
+          if (args.language) {
+            uastArgs += `, '${args.language}'`
+          } else {
+            uastArgs += `, ''`
+          }
+        }
+        if (args.xpath) {
+          uastArgs += `, '${args.xpath}'`;
+        }
+
+        let sql = `SELECT uast(${uastArgs}) as uast FROM blobs WHERE hash='${blob.hash}'`;
+
+        return connection
+          .query(sql)
+          .then(rows => {
+            // This should be only one row
+            if (rows.length > 0) {
+              let arr = JSON.parse(rows[0].uast);
+
+              return arr.map(e => {
+                let decoded = bblfshUAST.Node.decode(e);
+                return JSON.stringify(decoded, function(key, value) {
+                  // skip properties, it contains circular references (builder, parent)
+                  if (key === "properties") {
+                    return;
+                  }
+
+                  return value;
+                });
+              });
+            }
+
+            return [];
+          })
+          .catch(function(e) {
+            logErr(e);
             return [];
           });
       });

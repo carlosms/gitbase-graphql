@@ -55,6 +55,7 @@ The supported functions are:
 * `is_remote` & `is_tag`: as `Ref.isRemote` and `Ref.isTag`
 * `commit_has_blob`: as `Commits.blobs`
 * `language`: as `TreeEntry.language`
+* `uast`: as `Blob.uast`
 
 ## Examples
 
