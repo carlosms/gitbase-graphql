@@ -32,7 +32,7 @@ type Commit {
   committerWhen: String!   # TODO: type TIMESTAMP in the DB
   message: String!
   treeHash: String
-  blobs: [Blob]!
+  blobs(hash: String): [Blob]!
   # TODO: relation with Ref
 }
 

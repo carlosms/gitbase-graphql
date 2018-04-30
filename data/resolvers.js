@@ -128,9 +128,13 @@ const resolvers = {
   },
 
   Commit: {
-    blobs(commit) {
+    blobs(commit, args) {
       return mysql.then(connection => {
         let sql = `SELECT * FROM blobs WHERE commit_has_blob('${commit.hash}', hash)`;
+
+        if (args.hash) {
+          sql += ` AND hash='${args.hash}'`;
+        }
 
         return connection
           .query(sql)
