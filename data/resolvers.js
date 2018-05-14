@@ -1,4 +1,4 @@
-import mysql from './connectors';
+import mysqlPool from './connectors';
 
 const PROTO_PATH = `${__dirname}/../proto/generated.proto`;
 
@@ -17,14 +17,14 @@ function logErr(e) {
 const resolvers = {
   Query: {
     repository(root, args) {
-      return mysql.then(connection =>
+      return mysqlPool.getConnection().then(connection =>
         connection
           .query(`SELECT repository_id FROM repositories WHERE repository_id='${args.id}'`)
           .then(rows => ({ id: rows[0].repository_id })));
     },
 
     allRepositories() {
-      return mysql.then(connection =>
+      return mysqlPool.getConnection().then(connection =>
         connection
           .query('SELECT repository_id FROM repositories')
           .then(rows => rows.map(r => ({ id: r.repository_id }))));
@@ -33,7 +33,7 @@ const resolvers = {
 
   Repository: {
     refs(repository, args) {
-      return mysql.then((connection) => {
+      return mysqlPool.getConnection().then((connection) => {
         let sql = `
         SELECT ref_name, commit_hash,
         is_remote(ref_name) AS is_remote,
@@ -61,7 +61,7 @@ const resolvers = {
       });
     },
     remotes(repository, args) {
-      return mysql.then((connection) => {
+      return mysqlPool.getConnection().then((connection) => {
         let sql = `
         SELECT remote_name, remote_push_url, remote_fetch_url,
         remote_push_refspec, remote_fetch_refspec
@@ -89,7 +89,7 @@ const resolvers = {
       return { id: ref.repository_id };
     },
     commits(ref, args) {
-      return mysql.then((connection) => {
+      return mysqlPool.getConnection().then((connection) => {
         let sql = `SELECT * FROM commits WHERE commit_hash='${ref.commitHash}'`;
 
         if (args.authorName) {
@@ -130,7 +130,7 @@ const resolvers = {
 
   Commit: {
     blobs(commit, args) {
-      return mysql.then((connection) => {
+      return mysqlPool.getConnection().then((connection) => {
         let sql = `SELECT * FROM blobs WHERE commit_has_blob('${commit.hash}', blob_hash)`;
 
         if (args.hash) {
@@ -155,7 +155,7 @@ const resolvers = {
 
   Blob: {
     treeEntries(blob) {
-      return mysql.then((connection) => {
+      return mysqlPool.getConnection().then((connection) => {
         const sql = `SELECT
         tree_hash, blob_hash, tree_entry_mode, tree_entry_name, language(tree_entry_name) AS language
         FROM tree_entries
@@ -178,7 +178,7 @@ const resolvers = {
       });
     },
     uast(blob, args) {
-      return mysql.then((connection) => {
+      return mysqlPool.getConnection().then((connection) => {
         let uastArgs = 'blobs.blob_content';
 
         if (args.language || args.xpath) {
