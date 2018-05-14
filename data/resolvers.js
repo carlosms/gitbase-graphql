@@ -6,7 +6,6 @@ const grpc = require('grpc');
 
 const bblfshUAST = grpc.load(PROTO_PATH).gopkg.in.bblfsh.sdk.v1.uast;
 
-
 function logErr(e) {
   if (e.sqlMessage) {
     console.debug(`Failure. Query: ${e.sql}; error message: ${e.sqlMessage}`);
@@ -18,13 +17,17 @@ function logErr(e) {
 const resolvers = {
   Query: {
     repository(root, args) {
-      return mysql.then(connection => connection
-        .query(`SELECT id FROM repositories WHERE id='${args.id}'`)
-        .then(rows => ({ id: rows[0].id })));
+      return mysql.then(connection =>
+        connection
+          .query(`SELECT repository_id FROM repositories WHERE repository_id='${args.id}'`)
+          .then(rows => ({ id: rows[0].repository_id })));
     },
 
     allRepositories() {
-      return mysql.then(connection => connection.query('SELECT id FROM repositories').then(rows => rows.map(r => ({ id: r.id }))));
+      return mysql.then(connection =>
+        connection
+          .query('SELECT repository_id FROM repositories')
+          .then(rows => rows.map(r => ({ id: r.repository_id }))));
     },
   },
 
@@ -32,48 +35,51 @@ const resolvers = {
     refs(repository, args) {
       return mysql.then((connection) => {
         let sql = `
-        SELECT name, hash,
-        is_remote(name) AS is_remote,
-        is_tag(name) AS is_tag
+        SELECT ref_name, commit_hash,
+        is_remote(ref_name) AS is_remote,
+        is_tag(ref_name) AS is_tag
         FROM refs WHERE repository_id='${repository.id}'`;
 
         if (args.name !== undefined) {
-          sql += ` AND name='${args.name}'`;
+          sql += ` AND ref_name='${args.name}'`;
         }
         if (args.isRemote !== undefined) {
-          sql += ` AND is_remote(name)=${args.isRemote}`;
+          sql += ` AND is_remote(ref_name)=${args.isRemote}`;
         }
         if (args.isTag !== undefined) {
-          sql += ` AND is_tag(name)=${args.isTag}`;
+          sql += ` AND is_tag(ref_name)=${args.isTag}`;
         }
 
-        return connection.query(sql).then(rows => rows.map(r => ({
-          name: r.name,
-          hash: r.hash,
-          repository_id: repository.id,
-          isRemote: r.is_remote.toString() === '1', // type Buffer
-          isTag: r.is_tag.toString() === '1', // type Buffer
-        })));
+        return connection.query(sql).then(rows =>
+          rows.map(r => ({
+            name: r.ref_name,
+            commitHash: r.commit_hash,
+            repository_id: repository.id,
+            isRemote: r.is_remote.toString() === '1', // type Buffer
+            isTag: r.is_tag.toString() === '1', // type Buffer
+          })));
       });
     },
     remotes(repository, args) {
       return mysql.then((connection) => {
         let sql = `
-        SELECT name, push_url, fetch_url, push_refspec, fetch_refspec
+        SELECT remote_name, remote_push_url, remote_fetch_url,
+        remote_push_refspec, remote_fetch_refspec
         FROM remotes WHERE repository_id='${repository.id}'`;
 
         if (args.name !== undefined) {
-          sql += ` AND name='${args.name}'`;
+          sql += ` AND remote_name='${args.name}'`;
         }
 
-        return connection.query(sql).then(rows => rows.map(r => ({
-          repository_id: repository.id,
-          name: r.name,
-          pushUrl: r.push_url,
-          fetchUrl: r.fetch_url,
-          pushRefspec: r.push_refspec,
-          fetchRefspec: r.fetch_refspec,
-        })));
+        return connection.query(sql).then(rows =>
+          rows.map(r => ({
+            repository_id: repository.id,
+            name: r.remote_name,
+            pushUrl: r.remote_push_url,
+            fetchUrl: r.remote_fetch_url,
+            pushRefspec: r.remote_push_refspec,
+            fetchRefspec: r.remote_fetch_refspec,
+          })));
       });
     },
   },
@@ -84,29 +90,30 @@ const resolvers = {
     },
     commits(ref, args) {
       return mysql.then((connection) => {
-        let sql = `SELECT * FROM commits WHERE hash='${ref.hash}'`;
+        let sql = `SELECT * FROM commits WHERE commit_hash='${ref.commitHash}'`;
 
         if (args.authorName) {
-          sql += ` AND author_name='${args.authorName}'`;
+          sql += ` AND commit_author_name='${args.authorName}'`;
         }
 
         if (args.authorEmail) {
-          sql += ` AND author_email='${args.authorEmail}'`;
+          sql += ` AND commit_author_email='${args.authorEmail}'`;
         }
 
         return connection
           .query(sql)
-          .then(rows => rows.map(r => ({
-            hash: r.hash,
-            authorName: r.author_name,
-            authorEmail: r.author_email,
-            authorWhen: r.author_when,
-            committerName: r.committer_name,
-            committerEmail: r.committer_email,
-            committerWhen: r.committer_when,
-            message: r.message,
-            treeHash: r.tree_hash,
-          })))
+          .then(rows =>
+            rows.map(r => ({
+              hash: r.commit_hash,
+              authorName: r.commit_author_name,
+              authorEmail: r.commit_author_email,
+              authorWhen: r.commit_author_when,
+              committerName: r.committer_name,
+              committerEmail: r.committer_email,
+              committerWhen: r.committer_when,
+              message: r.commit_message,
+              treeHash: r.tree_hash,
+            })))
           .catch((e) => {
             logErr(e);
             return [];
@@ -124,19 +131,20 @@ const resolvers = {
   Commit: {
     blobs(commit, args) {
       return mysql.then((connection) => {
-        let sql = `SELECT * FROM blobs WHERE commit_has_blob('${commit.hash}', hash)`;
+        let sql = `SELECT * FROM blobs WHERE commit_has_blob('${commit.hash}', blob_hash)`;
 
         if (args.hash) {
-          sql += ` AND hash='${args.hash}'`;
+          sql += ` AND blob_hash='${args.hash}'`;
         }
 
         return connection
           .query(sql)
-          .then(rows => rows.map(r => ({
-            hash: r.hash,
-            size: r.size,
-            content: r.content,
-          })))
+          .then(rows =>
+            rows.map(r => ({
+              hash: r.blob_hash,
+              size: r.blob_size,
+              content: r.blob_content,
+            })))
           .catch((e) => {
             logErr(e);
             return [];
@@ -149,19 +157,20 @@ const resolvers = {
     treeEntries(blob) {
       return mysql.then((connection) => {
         const sql = `SELECT
-        tree_hash, entry_hash, mode, name, language(name) AS language
+        tree_hash, blob_hash, tree_entry_mode, tree_entry_name, language(tree_entry_name) AS language
         FROM tree_entries
-        WHERE entry_hash='${blob.hash}'`;
+        WHERE blob_hash='${blob.hash}'`;
 
         return connection
           .query(sql)
-          .then(rows => rows.map(r => ({
-            treeHash: r.tree_hash,
-            entryHash: r.entry_hash,
-            mode: r.mode,
-            name: r.name,
-            language: r.language,
-          })))
+          .then(rows =>
+            rows.map(r => ({
+              hash: r.tree_hash,
+              blobHash: r.blob_hash,
+              mode: r.tree_entry_mode,
+              name: r.tree_entry_name,
+              language: r.language,
+            })))
           .catch((e) => {
             logErr(e);
             return [];
@@ -170,20 +179,20 @@ const resolvers = {
     },
     uast(blob, args) {
       return mysql.then((connection) => {
-        let uastArgs = 'blobs.content';
+        let uastArgs = 'blobs.blob_content';
 
         if (args.language || args.xpath) {
           if (args.language) {
             uastArgs += `, '${args.language}'`;
           } else {
-            uastArgs += ', \'\'';
+            uastArgs += ", ''";
           }
         }
         if (args.xpath) {
           uastArgs += `, '${args.xpath}'`;
         }
 
-        const sql = `SELECT uast(${uastArgs}) as uast FROM blobs WHERE hash='${blob.hash}'`;
+        const sql = `SELECT uast(${uastArgs}) as uast FROM blobs WHERE blob_hash='${blob.hash}'`;
 
         return connection
           .query(sql)

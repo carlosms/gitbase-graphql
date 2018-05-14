@@ -18,7 +18,7 @@ type Repository {
 type Ref {
   repository: Repository!
   name: String!
-  hash: String!
+  commitHash: String!
   commits(authorName: String, authorEmail: String): [Commit]!
   isRemote: Boolean!
   isTag: Boolean!
@@ -56,8 +56,8 @@ type Blob {
 }
 
 type TreeEntry {
-  treeHash: String!
-  entryHash: String!
+  hash: String!
+  blobHash: String!
   mode: String!
   name: String!
   language: String!
