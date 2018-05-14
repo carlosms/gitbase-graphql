@@ -56,7 +56,17 @@ type Blob {
   size: Int! # Note: the graphql Int type is int32, but size is int64 in mysql
   content: String! # Note: mysql BLOB type
   treeEntries(name: String, language: String): [TreeEntry]!
-  uast(language: String, xpath: String): [JSON]!
+
+  """
+  Babelfish UAST Node with fields that you can query.
+  Each children level has to be queried explicitly.
+  """
+  uast(language: String, xpath: String): [UASTNode]!
+
+  """
+  Babelfish UAST Node, complete JSON
+  """
+  uastRaw(language: String, xpath: String): [JSON]!
 }
 
 type TreeEntry {
@@ -66,6 +76,36 @@ type TreeEntry {
   name: String!
   language: String!
   blob: Blob!
+}
+
+type UASTNode {
+  internal_type: String
+
+  # Properties map[string]string
+  # properties: JSON
+
+  """
+  Babelfish UAST Nodes with fields that you can query.
+  Each children level has to be queried explicitly.
+  """
+  children: [UASTNode]!
+
+  """
+  Babelfish UAST Nodes, complete JSON
+  """
+  childrenRaw: [JSON]!
+  token: String
+  start_position: UASTPosition
+  end_position: UASTPosition
+
+  # TODO: can be transformed to string https://godoc.org/github.com/bblfsh/sdk/uast#Role
+  roles: [Int]
+}
+
+type UASTPosition {
+  offset: Int
+  line: Int
+  col: Int
 }
 `;
 

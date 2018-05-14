@@ -224,6 +224,9 @@ const resolvers = {
     repository(blob) {
       return { id: blob._repository_id };
     },
+    uastRaw(blob, args) {
+      return resolvers.Blob.uast(blob, args);
+    },
     uast(blob, args) {
       return mysqlPool.getConnection().then((connection) => {
         let uastArgs = 'blobs.blob_content';
@@ -276,6 +279,12 @@ const resolvers = {
             return [];
           });
       });
+    },
+  },
+
+  UASTNode: {
+    childrenRaw(uast) {
+      return uast.children;
     },
   },
 
