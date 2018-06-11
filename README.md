@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/carlosms/gitbase-graphql.svg)](https://travis-ci.org/carlosms/gitbase-graphql)
+
 # gitbase-graphql
 
 Query Git repositories using [GraphQL](http://graphql.org/). Built on top of [gitbase](https://github.com/src-d/gitbase).
@@ -23,7 +25,7 @@ Then use [`docker-compose`](https://docs.docker.com/compose/install/) to automat
 ```bash
 wget https://raw.githubusercontent.com/carlosms/gitbase-graphql/master/docker-compose.yml
 docker-compose pull
-GITBASEPG_REPOS_FOLDER=$HOME/repos docker-compose up --force-recreate
+GITBASE_GQL_REPOS_FOLDER=$HOME/repos docker-compose up --force-recreate
 ```
 
 Now go to [http://localhost:3000/graphiql](http://localhost:3000/graphiql) and explore!
