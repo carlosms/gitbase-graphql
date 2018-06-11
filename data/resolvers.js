@@ -47,37 +47,39 @@ function treeEntries(where, args) {
   });
 }
 
+function commitsQuery(sql) {
+  return mysqlPool.getConnection().then(connection => connection
+    .query(sql)
+    .then(rows => rows.map(r => ({
+      _repository_id: r.repository_id,
+      hash: r.commit_hash,
+      authorName: r.commit_author_name,
+      authorEmail: r.commit_author_email,
+      authorWhen: r.commit_author_when,
+      committerName: r.committer_name,
+      committerEmail: r.committer_email,
+      committerWhen: r.committer_when,
+      message: r.commit_message,
+      _tree_hash: r.tree_hash,
+    })))
+    .catch((e) => {
+      logErr(e);
+      return [];
+    }));
+}
+
 function commits(where, args) {
-  return mysqlPool.getConnection().then((connection) => {
-    let sql = `SELECT * FROM commits WHERE ${where}`;
+  let sql = `SELECT * FROM commits WHERE ${where}`;
 
-    if (args && args.authorName) {
-      sql += ` AND commit_author_name='${args.authorName}'`;
-    }
+  if (args && args.authorName) {
+    sql += ` AND commit_author_name='${args.authorName}'`;
+  }
 
-    if (args && args.authorEmail) {
-      sql += ` AND commit_author_email='${args.authorEmail}'`;
-    }
+  if (args && args.authorEmail) {
+    sql += ` AND commit_author_email='${args.authorEmail}'`;
+  }
 
-    return connection
-      .query(sql)
-      .then(rows => rows.map(r => ({
-        _repository_id: r.repository_id,
-        hash: r.commit_hash,
-        authorName: r.commit_author_name,
-        authorEmail: r.commit_author_email,
-        authorWhen: r.commit_author_when,
-        committerName: r.committer_name,
-        committerEmail: r.committer_email,
-        committerWhen: r.committer_when,
-        message: r.commit_message,
-        _tree_hash: r.tree_hash,
-      })))
-      .catch((e) => {
-        logErr(e);
-        return [];
-      });
-  });
+  return commitsQuery(sql);
 }
 
 function blobs(where, args) {
@@ -190,12 +192,32 @@ const resolvers = {
       return { id: ref._repository_id };
     },
     commit(ref) {
-      return commits(`commit_hash='${ref.commitHash}'`)
+      return commits(`repository_id='${ref._repository_id}' AND commit_hash='${ref.commitHash}'`)
         .then((commitsArr) => {
           if (commitsArr.length > 0) {
             return commitsArr[0];
           }
         });
+    },
+    commits(ref, args) {
+      let sql = `SELECT commits.*, ref_commits.index
+      FROM ref_commits INNER JOIN commits
+        ON ref_commits.repository_id=commits.repository_id
+        AND ref_commits.commit_hash=commits.commit_hash
+      WHERE ref_commits.repository_id='${ref._repository_id}'
+        AND ref_commits.ref_name='${ref.name}'`;
+
+      if (args && args.authorName) {
+        sql += ` AND commits.commit_author_name='${args.authorName}'`;
+      }
+
+      if (args && args.authorEmail) {
+        sql += ` AND commits.commit_author_email='${args.authorEmail}'`;
+      }
+
+      sql += ' ORDER BY ref_commits.index ASC';
+
+      return commitsQuery(sql);
     },
   },
 

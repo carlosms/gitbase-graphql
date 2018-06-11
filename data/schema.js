@@ -22,6 +22,7 @@ type Ref {
   repository: Repository!
   name: String!
   commit: Commit!
+  commits(authorName: String, authorEmail: String): [Commit]!
   isRemote: Boolean!
   isTag: Boolean!
 }
