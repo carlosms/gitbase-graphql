@@ -1,0 +1,30 @@
+language: node_js
+
+node_js:
+  - "node"
+
+before_install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install 8
+  - nvm use 8
+  - npm install -g yarn
+
+install:
+  - yarn install
+
+stages:
+  - name: validate
+  - name: push to dockerhub
+    if: tag IS present
+
+jobs:
+  include:
+    - stage: validate
+      script:
+        - yarn lint
+    - stage: push to dockerhub
+      script:
+        - docker build -t carlosms/gitbase-graphql:latest -t carlosms/gitbase-graphql:$TRAVIS_BRANCH .
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker push carlosms/gitbase-graphql:latest
+        - docker push carlosms/gitbase-graphql:$TRAVIS_BRANCH
