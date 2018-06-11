@@ -76,7 +76,7 @@ type TreeEntry {
   mode: String!
   name: String!
   language: String!
-  blob: Blob!
+  blob: Blob
 }
 
 type UASTNode {

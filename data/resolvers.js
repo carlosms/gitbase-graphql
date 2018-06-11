@@ -14,37 +14,39 @@ function logErr(e) {
   }
 }
 
+function treeEntriesQuery(sql) {
+  return mysqlPool.getConnection().then(connection => connection
+    .query(sql)
+    .then(rows => rows.map(r => ({
+      _repository_id: r.repository_id,
+      hash: r.tree_hash,
+      _blob_hash: r.blob_hash,
+      mode: r.tree_entry_mode,
+      name: r.tree_entry_name,
+      language: r.language,
+    })))
+    .catch((e) => {
+      logErr(e);
+      return [];
+    }));
+}
+
 function treeEntries(where, args) {
-  return mysqlPool.getConnection().then((connection) => {
-    let sql = `SELECT
+  let sql = `SELECT
         repository_id, tree_hash, blob_hash, tree_entry_mode, tree_entry_name,
         language(tree_entry_name) AS language
         FROM tree_entries
         WHERE ${where}`;
 
-    if (args && args.name) {
-      sql += ` AND tree_entry_name='${args.name}'`;
-    }
+  if (args && args.name) {
+    sql += ` AND tree_entry_name='${args.name}'`;
+  }
 
-    if (args && args.language) {
-      sql += ` AND language(tree_entry_name)='${args.language}'`;
-    }
+  if (args && args.language) {
+    sql += ` AND language(tree_entry_name)='${args.language}'`;
+  }
 
-    return connection
-      .query(sql)
-      .then(rows => rows.map(r => ({
-        _repository_id: r.repository_id,
-        hash: r.tree_hash,
-        _blob_hash: r.blob_hash,
-        mode: r.tree_entry_mode,
-        name: r.tree_entry_name,
-        language: r.language,
-      })))
-      .catch((e) => {
-        logErr(e);
-        return [];
-      });
-  });
+  return treeEntriesQuery(sql);
 }
 
 function commitsQuery(sql) {
@@ -247,7 +249,23 @@ const resolvers = {
       return { id: commit._repository_id };
     },
     treeEntries(commit, args) {
-      return treeEntries(`tree_hash='${commit._tree_hash}'`, args);
+      let sql = `SELECT tree_entries.*,
+        language(tree_entries.tree_entry_name) AS language
+      FROM tree_entries INNER JOIN commit_trees
+        ON tree_entries.repository_id=commit_trees.repository_id
+        AND tree_entries.tree_hash=commit_trees.tree_hash
+      WHERE tree_entries.repository_id='${commit._repository_id}'
+        AND commit_trees.commit_hash='${commit.hash}'`;
+
+      if (args && args.name) {
+        sql += ` AND tree_entries.tree_entry_name='${args.name}'`;
+      }
+
+      if (args && args.language) {
+        sql += ` AND language(tree_entries.tree_entry_name)='${args.language}'`;
+      }
+
+      return treeEntriesQuery(sql);
     },
   },
 
