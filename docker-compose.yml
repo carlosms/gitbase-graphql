@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  gitbase-graphql:
+    image: "carlosms/gitbase-graphql"
+    ports:
+      - "3000:3000"
+    environment:
+      GITBASE_GQL_DB_HOST: gitbase
+    depends_on:
+      - gitbase
+  gitbase:
+    image: "srcd/gitbase:v0.12.1-rc1"
+    environment:
+      BBLFSH_ENDPOINT: bblfsh:9432
+    volumes:
+      - ${GITBASE_GQL_REPOS_FOLDER}:/opt/repos
+  bblfsh:
+    image: "bblfsh/bblfshd:v2.5.0"
+    privileged: true
+    volumes:
+      - type: volume
+        source: drivers
+        target: /var/lib/bblfshd
+    entrypoint: ["/bin/sh"]
+    command:
+    - "-c"
+    - "bblfshd & sleep 5 && bblfshctl driver install --recommended && tail -f /dev/null"
+
+volumes:
+  drivers:
