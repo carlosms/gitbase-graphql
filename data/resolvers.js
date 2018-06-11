@@ -82,27 +82,29 @@ function commits(where, args) {
   return commitsQuery(sql);
 }
 
+function blobsQuery(sql) {
+  return mysqlPool.getConnection().then(connection => connection
+    .query(sql)
+    .then(rows => rows.map(r => ({
+      _repository_id: r.repository_id,
+      hash: r.blob_hash,
+      size: r.blob_size,
+      content: r.blob_content,
+    })))
+    .catch((e) => {
+      logErr(e);
+      return [];
+    }));
+}
+
 function blobs(where, args) {
-  return mysqlPool.getConnection().then((connection) => {
-    let sql = `SELECT * FROM blobs WHERE ${where}`;
+  let sql = `SELECT * FROM blobs WHERE ${where}`;
 
-    if (args && args.hash) {
-      sql += ` AND blob_hash='${args.hash}'`;
-    }
+  if (args && args.hash) {
+    sql += ` AND blob_hash='${args.hash}'`;
+  }
 
-    return connection
-      .query(sql)
-      .then(rows => rows.map(r => ({
-        _repository_id: r.repository_id,
-        hash: r.blob_hash,
-        size: r.blob_size,
-        content: r.blob_content,
-      })))
-      .catch((e) => {
-        logErr(e);
-        return [];
-      });
-  });
+  return blobsQuery(sql);
 }
 
 const resolvers = {
@@ -229,7 +231,17 @@ const resolvers = {
 
   Commit: {
     blobs(commit, args) {
-      return blobs(`commit_has_blob('${commit.hash}', blob_hash)`, args);
+      let sql = `SELECT blobs.*
+      FROM blobs INNER JOIN commit_blobs
+        ON blobs.repository_id=commit_blobs.repository_id
+        AND blobs.blob_hash=commit_blobs.blob_hash
+      WHERE commit_blobs.commit_hash='${commit.hash}'`;
+
+      if (args && args.hash) {
+        sql += ` AND blob_hash='${args.hash}'`;
+      }
+
+      return blobsQuery(sql);
     },
     repository(commit) {
       return { id: commit._repository_id };
