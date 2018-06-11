@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import schema from './data/schema';
 import args from './args';
 
+console.info(`Starting server with configuration: ${JSON.stringify(args, null, '  ')}`);
 
 const graphQLServer = express();
 

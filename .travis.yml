@@ -9,9 +9,6 @@ before_install:
   - nvm use 8
   - npm install -g yarn
 
-install:
-  - yarn install
-
 stages:
   - name: validate
   - name: push to dockerhub
@@ -22,6 +19,7 @@ jobs:
     - stage: validate
       script:
         - yarn lint
+        - yarn install
     - stage: push to dockerhub
       script:
         - docker build -t carlosms/gitbase-graphql:latest -t carlosms/gitbase-graphql:$TRAVIS_BRANCH .
