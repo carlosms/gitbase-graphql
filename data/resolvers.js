@@ -14,6 +14,14 @@ function logErr(e) {
   }
 }
 
+function arrayToElem(elemArr) {
+  if (elemArr.length > 0) {
+    return elemArr[0];
+  }
+
+  return null;
+}
+
 function treeEntriesQuery(sql) {
   return mysqlPool.getConnection().then(connection => connection
     .query(sql)
@@ -48,6 +56,42 @@ function treeEntries(where, args) {
 
   return treeEntriesQuery(sql);
 }
+
+function filesQuery(sql) {
+  return mysqlPool.getConnection().then(connection => connection
+    .query(sql)
+    .then(rows => rows.map(r => ({
+      _repository_id: r.repository_id,
+      path: r.file_path,
+      _blob_hash: r.blob_hash,
+      rootTreeHash: r.tree_hash,
+      mode: r.tree_entry_mode,
+      content: r.blob_content,
+      size: r.blob_size,
+      language: r.language,
+    })))
+    .catch((e) => {
+      logErr(e);
+      return [];
+    }));
+}
+
+function files(where, args) {
+  let sql = `SELECT *, language(file_path) AS language
+    FROM files
+    WHERE ${where}`;
+
+  if (args && args.path) {
+    sql += ` AND file_path='${args.path}'`;
+  }
+
+  if (args && args.language) {
+    sql += ` AND language(file_path)='${args.language}'`;
+  }
+
+  return filesQuery(sql);
+}
+
 
 function commitsQuery(sql) {
   return mysqlPool.getConnection().then(connection => connection
@@ -189,6 +233,9 @@ const resolvers = {
     treeEntries(repository, args) {
       return treeEntries(`repository_id='${repository.id}'`, args);
     },
+    files(repository, args) {
+      return files(`repository_id='${repository.id}'`, args);
+    },
   },
 
   Ref: {
@@ -197,11 +244,7 @@ const resolvers = {
     },
     commit(ref) {
       return commits(`repository_id='${ref._repository_id}' AND commit_hash='${ref.commitHash}'`)
-        .then((commitsArr) => {
-          if (commitsArr.length > 0) {
-            return commitsArr[0];
-          }
-        });
+        .then(arrayToElem);
     },
     commits(ref, args) {
       let sql = `SELECT commits.*, ref_commits.index
@@ -276,6 +319,10 @@ const resolvers = {
     repository(blob) {
       return { id: blob._repository_id };
     },
+    file(blob, args) {
+      return files(`repository_id='${blob._repository_id}' AND blob_hash='${blob.hash}'`, args)
+        .then(arrayToElem);
+    },
     uastRaw(blob, args) {
       return resolvers.Blob.uast(blob, args);
     },
@@ -346,11 +393,14 @@ const resolvers = {
     },
     blob(entry) {
       return blobs(`blob_hash='${entry._blob_hash}'`)
-        .then((blobsArr) => {
-          if (blobsArr.length > 0) {
-            return blobsArr[0];
-          }
-        });
+        .then(arrayToElem);
+    },
+  },
+
+  File: {
+    blob(file) {
+      return blobs(`repository_id='${file._repository_id}' AND blob_hash='${file._blob_hash}'`)
+        .then(arrayToElem);
     },
   },
 };

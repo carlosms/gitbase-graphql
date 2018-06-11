@@ -16,6 +16,7 @@ type Repository {
   commits(authorName: String, authorEmail: String): [Commit]!
   blobs(hash: String): [Blob]!
   treeEntries(name: String, language: String): [TreeEntry]!
+  files(path: String, language: String): [File]!
 }
 
 type Ref {
@@ -57,6 +58,7 @@ type Blob {
   size: Int! # Note: the graphql Int type is int32, but size is int64 in mysql
   content: String! # Note: mysql BLOB type
   treeEntries(name: String, language: String): [TreeEntry]!
+  file: File!
 
   """
   Babelfish UAST Node with fields that you can query.
@@ -77,6 +79,17 @@ type TreeEntry {
   name: String!
   language: String!
   blob: Blob
+}
+
+type File {
+  repository: Repository!
+  path: String!
+  blob: Blob!
+  rootTreeHash: String!
+  mode: String!
+  content: String! # Note: mysql BLOB type
+  size: Int! # Note: the graphql Int type is int32, but size is int64 in mysql
+  language: String!
 }
 
 type UASTNode {
