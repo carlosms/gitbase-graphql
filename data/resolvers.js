@@ -153,7 +153,23 @@ function blobs(where, args) {
   return blobsQuery(sql);
 }
 
-function uastQuery(sql) {
+function flattenUastArr(uast, args) {
+  if (!args.flat) {
+    return uast;
+  }
+
+  return uast.reduce(
+    (acc, node) => acc.concat([node].concat(flattenUastArr(node.children, args))),
+    [],
+  );
+}
+
+function uastFilter(node, args) {
+  return (!args.token || node.token === args.token) &&
+         (!args.internal_type || node.internal_type === args.internal_type);
+}
+
+function uastQuery(sql, args) {
   return mysqlPool.getConnection().then(connection => connection
     .query(sql)
     .then((rows) => {
@@ -161,25 +177,30 @@ function uastQuery(sql) {
       if (rows.length > 0) {
         const arr = JSON.parse(rows[0].uast);
 
-        return arr.map((e) => {
-          const decoded = bblfshUAST.Node.decode(e);
+        const parsed = arr
+          .map((e) => {
+            const decoded = bblfshUAST.Node.decode(e);
 
-          // graphql-type-json will try to stringify, and it will fail
-          // because of circular references
+            // graphql-type-json will try to stringify, and it will fail
+            // because of circular references
 
-          const st = JSON.stringify(decoded, (key, value) => {
+            const st = JSON.stringify(decoded, (key, value) => {
             // skip properties, it contains circular references (builder, parent)
-            if (key === 'properties') {
-              return undefined;
-            }
+              if (key === 'properties') {
+                return undefined;
+              }
 
-            return value;
+              return value;
+            });
+
+            // Parse back to json, otherwise graphql-type-json will return
+            // a string
+            return JSON.parse(st);
           });
 
-          // Parse back to json, otherwise graphql-type-json will return
-          // a string
-          return JSON.parse(st);
-        });
+
+        const flattened = flattenUastArr(parsed, args);
+        return flattened.filter(node => uastFilter(node, args));
       }
 
       return [];
@@ -384,11 +405,16 @@ const resolvers = {
       const sql = `SELECT ${uastUDF('blobs.blob_content', args)} as uast
         FROM blobs WHERE blob_hash='${blob.hash}'`;
 
-      return uastQuery(sql);
+      return uastQuery(sql, args);
     },
   },
 
   UASTNode: {
+    children(uast, args) {
+      const { children } = uast;
+      const flattened = flattenUastArr(children, args);
+      return flattened.filter(node => uastFilter(node, args));
+    },
     childrenRaw(uast) {
       return uast.children;
     },
@@ -416,7 +442,7 @@ const resolvers = {
       const sql = `SELECT ${uastUDF('files.blob_content', args)} as uast
         FROM files WHERE blob_hash='${file._blob_hash}'`;
 
-      return uastQuery(sql);
+      return uastQuery(sql, args);
     },
   },
 };

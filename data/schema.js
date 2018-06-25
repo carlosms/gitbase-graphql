@@ -65,12 +65,16 @@ type Blob {
   Babelfish UAST Node with fields that you can query.
   Each children level has to be queried explicitly.
   """
-  uast(language: String, xpath: String): [UASTNode]!
+  uast(
+    language: String!,
+    internal_type: String,
+    token: String,
+    flat: Boolean): [UASTNode]!
 
   """
   Babelfish UAST Node, complete JSON
   """
-  uastRaw(language: String, xpath: String): [JSON]!
+  uastRaw(language: String!, xpath: String): [JSON]!
 }
 
 type TreeEntry {
@@ -96,12 +100,16 @@ type File {
   Babelfish UAST Node with fields that you can query.
   Each children level has to be queried explicitly.
   """
-  uast(language: String, xpath: String): [UASTNode]!
+  uast(
+    language: String!,
+    internal_type: String,
+    token: String,
+    flat: Boolean): [UASTNode]!
 
   """
   Babelfish UAST Node, complete JSON
   """
-  uastRaw(language: String, xpath: String): [JSON]!
+  uastRaw(language: String!, xpath: String): [JSON]!
 }
 
 type UASTNode {
@@ -114,7 +122,10 @@ type UASTNode {
   Babelfish UAST Nodes with fields that you can query.
   Each children level has to be queried explicitly.
   """
-  children: [UASTNode]!
+  children(
+    internal_type: String,
+    token: String,
+    flat: Boolean): [UASTNode]!
 
   """
   Babelfish UAST Nodes, complete JSON
