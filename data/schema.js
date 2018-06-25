@@ -40,6 +40,7 @@ type Commit {
   message: String!
   treeEntries(name: String, language: String): [TreeEntry]!
   blobs(hash: String): [Blob]!
+  files(path: String, language: String): [File]!
   # TODO: relation with Ref
 }
 
@@ -90,6 +91,17 @@ type File {
   content: String! # Note: mysql BLOB type
   size: Int! # Note: the graphql Int type is int32, but size is int64 in mysql
   language: String!
+
+  """
+  Babelfish UAST Node with fields that you can query.
+  Each children level has to be queried explicitly.
+  """
+  uast(language: String, xpath: String): [UASTNode]!
+
+  """
+  Babelfish UAST Node, complete JSON
+  """
+  uastRaw(language: String, xpath: String): [JSON]!
 }
 
 type UASTNode {

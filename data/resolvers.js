@@ -153,6 +153,60 @@ function blobs(where, args) {
   return blobsQuery(sql);
 }
 
+function uastQuery(sql) {
+  return mysqlPool.getConnection().then(connection => connection
+    .query(sql)
+    .then((rows) => {
+      // This should be only one row
+      if (rows.length > 0) {
+        const arr = JSON.parse(rows[0].uast);
+
+        return arr.map((e) => {
+          const decoded = bblfshUAST.Node.decode(e);
+
+          // graphql-type-json will try to stringify, and it will fail
+          // because of circular references
+
+          const st = JSON.stringify(decoded, (key, value) => {
+            // skip properties, it contains circular references (builder, parent)
+            if (key === 'properties') {
+              return undefined;
+            }
+
+            return value;
+          });
+
+          // Parse back to json, otherwise graphql-type-json will return
+          // a string
+          return JSON.parse(st);
+        });
+      }
+
+      return [];
+    })
+    .catch((e) => {
+      logErr(e);
+      return [];
+    }));
+}
+
+function uastUDF(column, args) {
+  let uastArgs = column;
+
+  if (args.language || args.xpath) {
+    if (args.language) {
+      uastArgs += `, '${args.language}'`;
+    } else {
+      uastArgs += ", ''";
+    }
+  }
+  if (args.xpath) {
+    uastArgs += `, '${args.xpath}'`;
+  }
+
+  return `uast(${uastArgs})`;
+}
+
 const resolvers = {
   Query: {
     repository(root, args) {
@@ -327,57 +381,10 @@ const resolvers = {
       return resolvers.Blob.uast(blob, args);
     },
     uast(blob, args) {
-      return mysqlPool.getConnection().then((connection) => {
-        let uastArgs = 'blobs.blob_content';
+      const sql = `SELECT ${uastUDF('blobs.blob_content', args)} as uast
+        FROM blobs WHERE blob_hash='${blob.hash}'`;
 
-        if (args.language || args.xpath) {
-          if (args.language) {
-            uastArgs += `, '${args.language}'`;
-          } else {
-            uastArgs += ", ''";
-          }
-        }
-        if (args.xpath) {
-          uastArgs += `, '${args.xpath}'`;
-        }
-
-        const sql = `SELECT uast(${uastArgs}) as uast FROM blobs WHERE blob_hash='${blob.hash}'`;
-
-        return connection
-          .query(sql)
-          .then((rows) => {
-            // This should be only one row
-            if (rows.length > 0) {
-              const arr = JSON.parse(rows[0].uast);
-
-              return arr.map((e) => {
-                const decoded = bblfshUAST.Node.decode(e);
-
-                // graphql-type-json will try to stringify, and it will fail
-                // because of circular references
-
-                const st = JSON.stringify(decoded, (key, value) => {
-                  // skip properties, it contains circular references (builder, parent)
-                  if (key === 'properties') {
-                    return undefined;
-                  }
-
-                  return value;
-                });
-
-                // Parse back to json, otherwise graphql-type-json will return
-                // a string
-                return JSON.parse(st);
-              });
-            }
-
-            return [];
-          })
-          .catch((e) => {
-            logErr(e);
-            return [];
-          });
-      });
+      return uastQuery(sql);
     },
   },
 
@@ -401,6 +408,15 @@ const resolvers = {
     blob(file) {
       return blobs(`repository_id='${file._repository_id}' AND blob_hash='${file._blob_hash}'`)
         .then(arrayToElem);
+    },
+    uastRaw(file, args) {
+      return resolvers.File.uast(file, args);
+    },
+    uast(file, args) {
+      const sql = `SELECT ${uastUDF('files.blob_content', args)} as uast
+        FROM files WHERE blob_hash='${file._blob_hash}'`;
+
+      return uastQuery(sql);
     },
   },
 };
