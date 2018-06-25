@@ -10,14 +10,19 @@ services:
     depends_on:
       - gitbase
   gitbase:
-    image: "srcd/gitbase:v0.12.1-rc1"
+    image: "srcd/gitbase:v0.13.0"
+    ports:
+      - "3306:3306"
     environment:
       BBLFSH_ENDPOINT: bblfsh:9432
+      GITBASE_UNSTABLE_SQUASH_ENABLE: "true"
     volumes:
       - ${GITBASE_GQL_REPOS_FOLDER}:/opt/repos
   bblfsh:
     image: "bblfsh/bblfshd:v2.5.0"
     privileged: true
+    ports:
+      - "9432:9432"
     volumes:
       - type: volume
         source: drivers
