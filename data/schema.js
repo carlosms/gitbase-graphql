@@ -69,6 +69,17 @@ type Blob {
     language: String!,
     internal_type: String,
     token: String,
+    """
+    **EXPERIMENTAL**
+
+    A string with JS code. 'node' and 'result' are global variables.
+
+    e.g. "result = node.token.length > 15;"
+    """
+    filter_func: String,
+    """
+    Flatten the tree allowing you filter nodes ignoring the tree level they are at.
+    """
     flat: Boolean): [UASTNode]!
 
   """
@@ -104,6 +115,17 @@ type File {
     language: String!,
     internal_type: String,
     token: String,
+    """
+    **EXPERIMENTAL**
+
+    A string with JS code. 'node' and 'result' are global variables.
+
+    e.g. "result = node.token.length > 15;"
+    """
+    filter_func: String,
+    """
+    Flatten the tree allowing you filter nodes ignoring the tree level they are at.
+    """
     flat: Boolean): [UASTNode]!
 
   """
@@ -125,6 +147,17 @@ type UASTNode {
   children(
     internal_type: String,
     token: String,
+    """
+    **EXPERIMENTAL**
+
+    A string with JS code. 'node' and 'result' are global variables.
+
+    e.g. "result = node.token.length > 15;"
+    """
+    filter_func: String,
+    """
+    Flatten the tree allowing you filter nodes ignoring the tree level they are at.
+    """
     flat: Boolean): [UASTNode]!
 
   """

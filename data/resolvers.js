@@ -1,5 +1,7 @@
 import mysqlPool from './connectors';
 
+const vm = require('vm');
+
 const PROTO_PATH = `${__dirname}/../proto/generated.proto`;
 
 const grpc = require('grpc');
@@ -165,8 +167,21 @@ function flattenUastArr(uast, args) {
 }
 
 function uastFilter(node, args) {
-  return (!args.token || node.token === args.token) &&
-         (!args.internal_type || node.internal_type === args.internal_type);
+  let good =
+    (!args.token || node.token === args.token) &&
+    (!args.internal_type || node.internal_type === args.internal_type);
+
+  if (good && args.filter_func !== undefined) {
+    // This is experimental, nodejs does not claim vm to be secure to execute
+    // untrusted code
+    const sandbox = { node, result: false };
+    vm.createContext(sandbox);
+    vm.runInContext(args.filter_func, sandbox);
+
+    good = sandbox.result;
+  }
+
+  return good;
 }
 
 function uastQuery(sql, args) {

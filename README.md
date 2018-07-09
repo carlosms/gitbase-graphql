@@ -244,6 +244,32 @@ Instead of setting a filter for each level of the query, you can use the `flat` 
 }
 ```
 
+There is an **experimental** argument o pass a sort of UDF (User Defined Function) to filter the nodes with any arbitrary code. The JavaScript code must be set as a string for `filter_func`. `node` and `result` are accesible as global variables. For example,
+
+- `filter_func: "result = node.token.length > 15;"`
+- `filter_func: "result = node.internal_type !== 'Comment' && node.token.length > 0;"`
+
+```graphql
+{
+  allRepositories {
+    id
+    refs(name: "HEAD") {
+      commit {
+        files(language: "Go") {
+          path
+          size
+          uast(language: "Go", flat: true, filter_func:
+            "result = node.token.length > 15;") {
+            token
+            internal_type
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 ## Advanced Usage
 
 ### Run from Sources
