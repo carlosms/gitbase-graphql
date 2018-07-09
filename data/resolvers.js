@@ -385,6 +385,28 @@ const resolvers = {
 
       return treeEntriesQuery(sql);
     },
+    files(commit, args) {
+      let sql = `SELECT files.*, language(files.file_path) AS language
+        FROM files
+        JOIN commit_files ON
+          files.repository_id=commit_files.repository_id AND
+          files.file_path=commit_files.file_path AND
+          files.blob_hash=commit_files.blob_hash AND
+          files.tree_hash=commit_files.tree_hash
+        WHERE
+          files.repository_id='${commit._repository_id}' AND
+          commit_hash='${commit.hash}'`;
+
+      if (args && args.path) {
+        sql += ` AND files.file_path='${args.path}'`;
+      }
+
+      if (args && args.language) {
+        sql += ` AND language(files.file_path)='${args.language}'`;
+      }
+
+      return filesQuery(sql);
+    },
   },
 
   Blob: {
