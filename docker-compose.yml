@@ -10,7 +10,7 @@ services:
     depends_on:
       - gitbase
   gitbase:
-    image: "srcd/gitbase:v0.13.0"
+    image: "srcd/gitbase:v0.14.0-rc2"
     ports:
       - "3306:3306"
     environment:

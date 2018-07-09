@@ -260,5 +260,5 @@ The following environment variables can be set:
 | `GITBASE_GQL_PORT` | `3000` | Port where the GraphQL server server will listen |
 | `GITBASE_GQL_DB_HOST` | `localhost` | Host where the gitbase server is listening |
 | `GITBASE_GQL_DB_PORT` | `3306` | Port where the gitbase server is listening |
-| `GITBASE_GQL_DB_USER` | `gitbase` | User name used for the gitbase server connection |
+| `GITBASE_GQL_DB_USER` | `root` | User name used for the gitbase server connection |
 | `GITBASE_GQL_DB_PASSWORD` | ` ` | Password used for the gitbase server connection |
