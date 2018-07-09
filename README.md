@@ -76,13 +76,17 @@ Some queries you can try:
 {
   allRepositories {
     id
-    jsFiles: files(language: "JavaScript") {
-      path
-      size
-    }
-    goFiles: files(language: "Go") {
-      path
-      size
+    refs(name: "HEAD") {
+      commit {
+        jsFiles: files(language: "JavaScript") {
+          path
+          size
+        }
+        goFiles: files(language: "Go") {
+          path
+          size
+        }
+      }
     }
   }
 }
