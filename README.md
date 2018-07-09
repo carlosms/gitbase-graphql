@@ -33,7 +33,7 @@ Now go to [http://localhost:3000/graphiql](http://localhost:3000/graphiql) and e
 
 ## Schema
 
-In the following link you will find the [GraphQL schema definition](./data/schema.js).
+In the following link you will find the [GraphQL schema definition](./schema.md).
 
 ### Git Examples
 
