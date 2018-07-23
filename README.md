@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/carlosms/gitbase-graphql.svg)](https://travis-ci.org/carlosms/gitbase-graphql)
+[![codecov.io](https://codecov.io/github/carlosms/gitbase-graphql/coverage.svg)](https://codecov.io/github/carlosms/gitbase-graphql)
 
 # gitbase-graphql
 
