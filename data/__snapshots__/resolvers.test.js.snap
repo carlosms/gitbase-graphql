@@ -1,0 +1,4044 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Integration Test Queries query: allRepositories 1`] = `
+Object {
+  "data": Object {
+    "allRepositories": Array [
+      Object {
+        "id": "gitbase-graphql",
+      },
+    ],
+  },
+}
+`;
+
+exports[`Integration Test Queries query: commit, all files 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "files": Array [
+              Object {
+                "path": ".dockerignore",
+              },
+              Object {
+                "path": ".eslintrc",
+              },
+              Object {
+                "path": ".gitignore",
+              },
+              Object {
+                "path": ".travis.yml",
+              },
+              Object {
+                "path": "Dockerfile",
+              },
+              Object {
+                "path": "LICENSE",
+              },
+              Object {
+                "path": "README.md",
+              },
+              Object {
+                "path": "args.js",
+              },
+              Object {
+                "path": "data/connectors.js",
+              },
+              Object {
+                "path": "data/resolvers.js",
+              },
+              Object {
+                "path": "data/schema.js",
+              },
+              Object {
+                "path": "docs/demo.gif",
+              },
+              Object {
+                "path": "package.json",
+              },
+              Object {
+                "path": "proto/generated.proto",
+              },
+              Object {
+                "path": "proto/github.com/gogo/protobuf/gogoproto/gogo.proto",
+              },
+              Object {
+                "path": "server.js",
+              },
+              Object {
+                "path": "yarn.lock",
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: commit.blobs.file 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "blobs": Array [
+              Object {
+                "content": "node_modules
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+",
+                "file": Object {
+                  "content": "node_modules
+
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+",
+                  "path": ".dockerignore",
+                },
+                "hash": "ffb252de4852456e2c2c7e2c0f1d8eca30ffb195",
+                "size": 72,
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: commit.files, all fields 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "files": Array [
+              Object {
+                "blob": Object {
+                  "hash": "763962b16a8296d436c227672eef35e1023f957e",
+                  "size": 541,
+                },
+                "content": "import express from 'express';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import bodyParser from 'body-parser';
+import schema from './data/schema';
+import args from './args';
+
+
+const graphQLServer = express();
+
+graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+graphQLServer.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+
+graphQLServer.listen(args['listen-port'], () =>
+  console.log(\`GraphiQL is now running on http://localhost:\${args['listen-port']}/graphiql\`));
+",
+                "language": "JavaScript",
+                "mode": "0100644",
+                "path": "server.js",
+                "rootTreeHash": "4a9039f8869cfc430456783c0d65033fa6622cb2",
+                "size": 541,
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: commit.treeEntries with language 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "treeEntries": Array [
+              Object {
+                "hash": "43d94b4c2d11cd9558366df05052e694c2ac4efe",
+                "language": "Dockerfile",
+                "mode": "100644",
+                "name": "Dockerfile",
+              },
+            ],
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: files.uast filter by token 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "files": Array [
+              Object {
+                "path": "server.js",
+                "uast": Array [
+                  Object {
+                    "end_position": Object {
+                      "col": 10,
+                      "line": 14,
+                      "offset": 455,
+                    },
+                    "internal_type": "Identifier",
+                    "roles": Array [
+                      18,
+                      1,
+                    ],
+                    "start_position": Object {
+                      "col": 3,
+                      "line": 14,
+                      "offset": 448,
+                    },
+                    "token": "console",
+                  },
+                ],
+              },
+            ],
+          },
+          "isTag": true,
+          "name": "refs/tags/v0.0.1",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: files.uast flat false 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "files": Array [
+              Object {
+                "path": "server.js",
+                "uast": Array [
+                  Object {
+                    "internal_type": "File",
+                    "token": "",
+                  },
+                ],
+              },
+            ],
+          },
+          "isTag": true,
+          "name": "refs/tags/v0.0.1",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: files.uast flat true 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "files": Array [
+              Object {
+                "path": "server.js",
+                "uast": Array [
+                  Object {
+                    "internal_type": "File",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Program",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "ImportDeclaration",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "ImportDefaultSpecifier",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "express",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "express",
+                  },
+                  Object {
+                    "internal_type": "ImportDeclaration",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "ImportSpecifier",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphqlExpress",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphqlExpress",
+                  },
+                  Object {
+                    "internal_type": "ImportSpecifier",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphiqlExpress",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphiqlExpress",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "apollo-server-express",
+                  },
+                  Object {
+                    "internal_type": "ImportDeclaration",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "ImportDefaultSpecifier",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "bodyParser",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "body-parser",
+                  },
+                  Object {
+                    "internal_type": "ImportDeclaration",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "ImportDefaultSpecifier",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "schema",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "./data/schema",
+                  },
+                  Object {
+                    "internal_type": "ImportDeclaration",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "ImportDefaultSpecifier",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "args",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "./args",
+                  },
+                  Object {
+                    "internal_type": "VariableDeclaration",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "VariableDeclarator",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphQLServer",
+                  },
+                  Object {
+                    "internal_type": "CallExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "express",
+                  },
+                  Object {
+                    "internal_type": "ExpressionStatement",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "CallExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "MemberExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphQLServer",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "use",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "/graphql",
+                  },
+                  Object {
+                    "internal_type": "CallExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "MemberExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "bodyParser",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "json",
+                  },
+                  Object {
+                    "internal_type": "CallExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphqlExpress",
+                  },
+                  Object {
+                    "internal_type": "ObjectExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "ObjectProperty",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "schema",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "schema",
+                  },
+                  Object {
+                    "internal_type": "ExpressionStatement",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "CallExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "MemberExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphQLServer",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "use",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "/graphiql",
+                  },
+                  Object {
+                    "internal_type": "CallExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphiqlExpress",
+                  },
+                  Object {
+                    "internal_type": "ObjectExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "ObjectProperty",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "endpointURL",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "/graphql",
+                  },
+                  Object {
+                    "internal_type": "ExpressionStatement",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "CallExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "MemberExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "graphQLServer",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "listen",
+                  },
+                  Object {
+                    "internal_type": "MemberExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "args",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "listen-port",
+                  },
+                  Object {
+                    "internal_type": "ArrowFunctionExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "CallExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "MemberExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "console",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "log",
+                  },
+                  Object {
+                    "internal_type": "TemplateLiteral",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "TemplateElement",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "MemberExpression",
+                    "token": "",
+                  },
+                  Object {
+                    "internal_type": "Identifier",
+                    "token": "args",
+                  },
+                  Object {
+                    "internal_type": "StringLiteral",
+                    "token": "listen-port",
+                  },
+                  Object {
+                    "internal_type": "TemplateElement",
+                    "token": "",
+                  },
+                ],
+              },
+            ],
+          },
+          "isTag": true,
+          "name": "refs/tags/v0.0.1",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: files.uast, all fields 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "files": Array [
+              Object {
+                "path": "server.js",
+                "uast": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "children": Array [
+                          Object {
+                            "childrenRaw": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 15,
+                                      "line": 1,
+                                      "offset": 14,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 8,
+                                      "line": 1,
+                                      "offset": 7,
+                                    },
+                                    "token": "express",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 15,
+                                  "line": 1,
+                                  "offset": 14,
+                                },
+                                "internal_type": "ImportDefaultSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 8,
+                                  "line": 1,
+                                  "offset": 7,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 30,
+                                  "line": 1,
+                                  "offset": 29,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 21,
+                                  "line": 1,
+                                  "offset": 20,
+                                },
+                                "token": "express",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 31,
+                              "line": 1,
+                              "offset": 30,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 1,
+                              "offset": 0,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "childrenRaw": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 24,
+                                      "line": 2,
+                                      "offset": 54,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 10,
+                                      "line": 2,
+                                      "offset": 40,
+                                    },
+                                    "token": "graphqlExpress",
+                                  },
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 24,
+                                      "line": 2,
+                                      "offset": 54,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 10,
+                                      "line": 2,
+                                      "offset": 40,
+                                    },
+                                    "token": "graphqlExpress",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 24,
+                                  "line": 2,
+                                  "offset": 54,
+                                },
+                                "internal_type": "ImportSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 10,
+                                  "line": 2,
+                                  "offset": 40,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 41,
+                                      "line": 2,
+                                      "offset": 71,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 26,
+                                      "line": 2,
+                                      "offset": 56,
+                                    },
+                                    "token": "graphiqlExpress",
+                                  },
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 41,
+                                      "line": 2,
+                                      "offset": 71,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 26,
+                                      "line": 2,
+                                      "offset": 56,
+                                    },
+                                    "token": "graphiqlExpress",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 41,
+                                  "line": 2,
+                                  "offset": 71,
+                                },
+                                "internal_type": "ImportSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 26,
+                                  "line": 2,
+                                  "offset": 56,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 72,
+                                  "line": 2,
+                                  "offset": 102,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 49,
+                                  "line": 2,
+                                  "offset": 79,
+                                },
+                                "token": "apollo-server-express",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 73,
+                              "line": 2,
+                              "offset": 103,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 2,
+                              "offset": 31,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "childrenRaw": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 18,
+                                      "line": 3,
+                                      "offset": 121,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 8,
+                                      "line": 3,
+                                      "offset": 111,
+                                    },
+                                    "token": "bodyParser",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 18,
+                                  "line": 3,
+                                  "offset": 121,
+                                },
+                                "internal_type": "ImportDefaultSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 8,
+                                  "line": 3,
+                                  "offset": 111,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 37,
+                                  "line": 3,
+                                  "offset": 140,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 24,
+                                  "line": 3,
+                                  "offset": 127,
+                                },
+                                "token": "body-parser",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 38,
+                              "line": 3,
+                              "offset": 141,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 3,
+                              "offset": 104,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "childrenRaw": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 14,
+                                      "line": 4,
+                                      "offset": 155,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 8,
+                                      "line": 4,
+                                      "offset": 149,
+                                    },
+                                    "token": "schema",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 14,
+                                  "line": 4,
+                                  "offset": 155,
+                                },
+                                "internal_type": "ImportDefaultSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 8,
+                                  "line": 4,
+                                  "offset": 149,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 35,
+                                  "line": 4,
+                                  "offset": 176,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 20,
+                                  "line": 4,
+                                  "offset": 161,
+                                },
+                                "token": "./data/schema",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 36,
+                              "line": 4,
+                              "offset": 177,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 4,
+                              "offset": 142,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "childrenRaw": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 12,
+                                      "line": 5,
+                                      "offset": 189,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 8,
+                                      "line": 5,
+                                      "offset": 185,
+                                    },
+                                    "token": "args",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 12,
+                                  "line": 5,
+                                  "offset": 189,
+                                },
+                                "internal_type": "ImportDefaultSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 8,
+                                  "line": 5,
+                                  "offset": 185,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 26,
+                                  "line": 5,
+                                  "offset": 203,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 18,
+                                  "line": 5,
+                                  "offset": 195,
+                                },
+                                "token": "./args",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 27,
+                              "line": 5,
+                              "offset": 204,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 5,
+                              "offset": 178,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "childrenRaw": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 20,
+                                      "line": 8,
+                                      "offset": 226,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 7,
+                                      "line": 8,
+                                      "offset": 213,
+                                    },
+                                    "token": "graphQLServer",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 30,
+                                          "line": 8,
+                                          "offset": 236,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                          84,
+                                          85,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 23,
+                                          "line": 8,
+                                          "offset": 229,
+                                        },
+                                        "token": "express",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 32,
+                                      "line": 8,
+                                      "offset": 238,
+                                    },
+                                    "internal_type": "CallExpression",
+                                    "roles": Array [
+                                      68,
+                                      18,
+                                      84,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 23,
+                                      "line": 8,
+                                      "offset": 229,
+                                    },
+                                    "token": "",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 32,
+                                  "line": 8,
+                                  "offset": 238,
+                                },
+                                "internal_type": "VariableDeclarator",
+                                "roles": Array [
+                                  41,
+                                  117,
+                                ],
+                                "start_position": Object {
+                                  "col": 7,
+                                  "line": 8,
+                                  "offset": 213,
+                                },
+                                "token": "",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 33,
+                              "line": 8,
+                              "offset": 239,
+                            },
+                            "internal_type": "VariableDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              117,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 8,
+                              "offset": 207,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "childrenRaw": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 14,
+                                          "line": 10,
+                                          "offset": 254,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 1,
+                                          "line": 10,
+                                          "offset": 241,
+                                        },
+                                        "token": "graphQLServer",
+                                      },
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 18,
+                                          "line": 10,
+                                          "offset": 258,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 15,
+                                          "line": 10,
+                                          "offset": 255,
+                                        },
+                                        "token": "use",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 18,
+                                      "line": 10,
+                                      "offset": 258,
+                                    },
+                                    "internal_type": "MemberExpression",
+                                    "roles": Array [
+                                      2,
+                                      18,
+                                      1,
+                                      84,
+                                      85,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 1,
+                                      "line": 10,
+                                      "offset": 241,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 29,
+                                      "line": 10,
+                                      "offset": 269,
+                                    },
+                                    "internal_type": "StringLiteral",
+                                    "roles": Array [
+                                      18,
+                                      88,
+                                      98,
+                                      84,
+                                      49,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 19,
+                                      "line": 10,
+                                      "offset": 259,
+                                    },
+                                    "token": "/graphql",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [
+                                          Object {
+                                            "children": Array [],
+                                            "end_position": Object {
+                                              "col": 41,
+                                              "line": 10,
+                                              "offset": 281,
+                                            },
+                                            "internal_type": "Identifier",
+                                            "roles": Array [
+                                              18,
+                                              1,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 31,
+                                              "line": 10,
+                                              "offset": 271,
+                                            },
+                                            "token": "bodyParser",
+                                          },
+                                          Object {
+                                            "children": Array [],
+                                            "end_position": Object {
+                                              "col": 46,
+                                              "line": 10,
+                                              "offset": 286,
+                                            },
+                                            "internal_type": "Identifier",
+                                            "roles": Array [
+                                              18,
+                                              1,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 42,
+                                              "line": 10,
+                                              "offset": 282,
+                                            },
+                                            "token": "json",
+                                          },
+                                        ],
+                                        "end_position": Object {
+                                          "col": 46,
+                                          "line": 10,
+                                          "offset": 286,
+                                        },
+                                        "internal_type": "MemberExpression",
+                                        "roles": Array [
+                                          2,
+                                          18,
+                                          1,
+                                          84,
+                                          85,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 31,
+                                          "line": 10,
+                                          "offset": 271,
+                                        },
+                                        "token": "",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 48,
+                                      "line": 10,
+                                      "offset": 288,
+                                    },
+                                    "internal_type": "CallExpression",
+                                    "roles": Array [
+                                      84,
+                                      49,
+                                      18,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 31,
+                                      "line": 10,
+                                      "offset": 271,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 64,
+                                          "line": 10,
+                                          "offset": 304,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                          84,
+                                          85,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 50,
+                                          "line": 10,
+                                          "offset": 290,
+                                        },
+                                        "token": "graphqlExpress",
+                                      },
+                                      Object {
+                                        "children": Array [
+                                          Object {
+                                            "children": Array [
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 73,
+                                                  "line": 10,
+                                                  "offset": 313,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                  93,
+                                                  102,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 67,
+                                                  "line": 10,
+                                                  "offset": 307,
+                                                },
+                                                "token": "schema",
+                                              },
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 73,
+                                                  "line": 10,
+                                                  "offset": 313,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                  93,
+                                                  50,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 67,
+                                                  "line": 10,
+                                                  "offset": 307,
+                                                },
+                                                "token": "schema",
+                                              },
+                                            ],
+                                            "end_position": Object {
+                                              "col": 73,
+                                              "line": 10,
+                                              "offset": 313,
+                                            },
+                                            "internal_type": "ObjectProperty",
+                                            "roles": Array [
+                                              93,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 67,
+                                              "line": 10,
+                                              "offset": 307,
+                                            },
+                                            "token": "",
+                                          },
+                                        ],
+                                        "end_position": Object {
+                                          "col": 75,
+                                          "line": 10,
+                                          "offset": 315,
+                                        },
+                                        "internal_type": "ObjectExpression",
+                                        "roles": Array [
+                                          18,
+                                          68,
+                                          93,
+                                          88,
+                                          84,
+                                          49,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 65,
+                                          "line": 10,
+                                          "offset": 305,
+                                        },
+                                        "token": "",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 76,
+                                      "line": 10,
+                                      "offset": 316,
+                                    },
+                                    "internal_type": "CallExpression",
+                                    "roles": Array [
+                                      84,
+                                      49,
+                                      18,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 50,
+                                      "line": 10,
+                                      "offset": 290,
+                                    },
+                                    "token": "",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 77,
+                                  "line": 10,
+                                  "offset": 317,
+                                },
+                                "internal_type": "CallExpression",
+                                "roles": Array [
+                                  18,
+                                  84,
+                                ],
+                                "start_position": Object {
+                                  "col": 1,
+                                  "line": 10,
+                                  "offset": 241,
+                                },
+                                "token": "",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 78,
+                              "line": 10,
+                              "offset": 318,
+                            },
+                            "internal_type": "ExpressionStatement",
+                            "roles": Array [
+                              19,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 10,
+                              "offset": 241,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "childrenRaw": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 14,
+                                          "line": 11,
+                                          "offset": 332,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 1,
+                                          "line": 11,
+                                          "offset": 319,
+                                        },
+                                        "token": "graphQLServer",
+                                      },
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 18,
+                                          "line": 11,
+                                          "offset": 336,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 15,
+                                          "line": 11,
+                                          "offset": 333,
+                                        },
+                                        "token": "use",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 18,
+                                      "line": 11,
+                                      "offset": 336,
+                                    },
+                                    "internal_type": "MemberExpression",
+                                    "roles": Array [
+                                      2,
+                                      18,
+                                      1,
+                                      84,
+                                      85,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 1,
+                                      "line": 11,
+                                      "offset": 319,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 30,
+                                      "line": 11,
+                                      "offset": 348,
+                                    },
+                                    "internal_type": "StringLiteral",
+                                    "roles": Array [
+                                      18,
+                                      88,
+                                      98,
+                                      84,
+                                      49,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 19,
+                                      "line": 11,
+                                      "offset": 337,
+                                    },
+                                    "token": "/graphiql",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 47,
+                                          "line": 11,
+                                          "offset": 365,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                          84,
+                                          85,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 32,
+                                          "line": 11,
+                                          "offset": 350,
+                                        },
+                                        "token": "graphiqlExpress",
+                                      },
+                                      Object {
+                                        "children": Array [
+                                          Object {
+                                            "children": Array [
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 61,
+                                                  "line": 11,
+                                                  "offset": 379,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                  93,
+                                                  102,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 50,
+                                                  "line": 11,
+                                                  "offset": 368,
+                                                },
+                                                "token": "endpointURL",
+                                              },
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 73,
+                                                  "line": 11,
+                                                  "offset": 391,
+                                                },
+                                                "internal_type": "StringLiteral",
+                                                "roles": Array [
+                                                  18,
+                                                  88,
+                                                  98,
+                                                  93,
+                                                  50,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 63,
+                                                  "line": 11,
+                                                  "offset": 381,
+                                                },
+                                                "token": "/graphql",
+                                              },
+                                            ],
+                                            "end_position": Object {
+                                              "col": 73,
+                                              "line": 11,
+                                              "offset": 391,
+                                            },
+                                            "internal_type": "ObjectProperty",
+                                            "roles": Array [
+                                              93,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 50,
+                                              "line": 11,
+                                              "offset": 368,
+                                            },
+                                            "token": "",
+                                          },
+                                        ],
+                                        "end_position": Object {
+                                          "col": 75,
+                                          "line": 11,
+                                          "offset": 393,
+                                        },
+                                        "internal_type": "ObjectExpression",
+                                        "roles": Array [
+                                          18,
+                                          68,
+                                          93,
+                                          88,
+                                          84,
+                                          49,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 48,
+                                          "line": 11,
+                                          "offset": 366,
+                                        },
+                                        "token": "",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 76,
+                                      "line": 11,
+                                      "offset": 394,
+                                    },
+                                    "internal_type": "CallExpression",
+                                    "roles": Array [
+                                      84,
+                                      49,
+                                      18,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 32,
+                                      "line": 11,
+                                      "offset": 350,
+                                    },
+                                    "token": "",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 77,
+                                  "line": 11,
+                                  "offset": 395,
+                                },
+                                "internal_type": "CallExpression",
+                                "roles": Array [
+                                  18,
+                                  84,
+                                ],
+                                "start_position": Object {
+                                  "col": 1,
+                                  "line": 11,
+                                  "offset": 319,
+                                },
+                                "token": "",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 78,
+                              "line": 11,
+                              "offset": 396,
+                            },
+                            "internal_type": "ExpressionStatement",
+                            "roles": Array [
+                              19,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 11,
+                              "offset": 319,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "childrenRaw": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 14,
+                                          "line": 13,
+                                          "offset": 411,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 1,
+                                          "line": 13,
+                                          "offset": 398,
+                                        },
+                                        "token": "graphQLServer",
+                                      },
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 21,
+                                          "line": 13,
+                                          "offset": 418,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 15,
+                                          "line": 13,
+                                          "offset": 412,
+                                        },
+                                        "token": "listen",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 21,
+                                      "line": 13,
+                                      "offset": 418,
+                                    },
+                                    "internal_type": "MemberExpression",
+                                    "roles": Array [
+                                      2,
+                                      18,
+                                      1,
+                                      84,
+                                      85,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 1,
+                                      "line": 13,
+                                      "offset": 398,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 26,
+                                          "line": 13,
+                                          "offset": 423,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 22,
+                                          "line": 13,
+                                          "offset": 419,
+                                        },
+                                        "token": "args",
+                                      },
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 40,
+                                          "line": 13,
+                                          "offset": 437,
+                                        },
+                                        "internal_type": "StringLiteral",
+                                        "roles": Array [
+                                          18,
+                                          88,
+                                          98,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 27,
+                                          "line": 13,
+                                          "offset": 424,
+                                        },
+                                        "token": "listen-port",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 41,
+                                      "line": 13,
+                                      "offset": 438,
+                                    },
+                                    "internal_type": "MemberExpression",
+                                    "roles": Array [
+                                      2,
+                                      18,
+                                      1,
+                                      84,
+                                      49,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 22,
+                                      "line": 13,
+                                      "offset": 419,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [
+                                          Object {
+                                            "children": Array [
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 10,
+                                                  "line": 14,
+                                                  "offset": 455,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 3,
+                                                  "line": 14,
+                                                  "offset": 448,
+                                                },
+                                                "token": "console",
+                                              },
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 14,
+                                                  "line": 14,
+                                                  "offset": 459,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 11,
+                                                  "line": 14,
+                                                  "offset": 456,
+                                                },
+                                                "token": "log",
+                                              },
+                                            ],
+                                            "end_position": Object {
+                                              "col": 14,
+                                              "line": 14,
+                                              "offset": 459,
+                                            },
+                                            "internal_type": "MemberExpression",
+                                            "roles": Array [
+                                              2,
+                                              18,
+                                              1,
+                                              84,
+                                              85,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 3,
+                                              "line": 14,
+                                              "offset": 448,
+                                            },
+                                            "token": "",
+                                          },
+                                          Object {
+                                            "children": Array [
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 60,
+                                                  "line": 14,
+                                                  "offset": 505,
+                                                },
+                                                "internal_type": "TemplateElement",
+                                                "roles": Array [
+                                                  88,
+                                                  98,
+                                                  109,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 16,
+                                                  "line": 14,
+                                                  "offset": 461,
+                                                },
+                                                "token": "",
+                                              },
+                                              Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "children": Array [],
+                                                    "end_position": Object {
+                                                      "col": 66,
+                                                      "line": 14,
+                                                      "offset": 511,
+                                                    },
+                                                    "internal_type": "Identifier",
+                                                    "roles": Array [
+                                                      18,
+                                                      1,
+                                                    ],
+                                                    "start_position": Object {
+                                                      "col": 62,
+                                                      "line": 14,
+                                                      "offset": 507,
+                                                    },
+                                                    "token": "args",
+                                                  },
+                                                  Object {
+                                                    "children": Array [],
+                                                    "end_position": Object {
+                                                      "col": 80,
+                                                      "line": 14,
+                                                      "offset": 525,
+                                                    },
+                                                    "internal_type": "StringLiteral",
+                                                    "roles": Array [
+                                                      18,
+                                                      88,
+                                                      98,
+                                                    ],
+                                                    "start_position": Object {
+                                                      "col": 67,
+                                                      "line": 14,
+                                                      "offset": 512,
+                                                    },
+                                                    "token": "listen-port",
+                                                  },
+                                                ],
+                                                "end_position": Object {
+                                                  "col": 81,
+                                                  "line": 14,
+                                                  "offset": 526,
+                                                },
+                                                "internal_type": "MemberExpression",
+                                                "roles": Array [
+                                                  2,
+                                                  18,
+                                                  1,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 62,
+                                                  "line": 14,
+                                                  "offset": 507,
+                                                },
+                                                "token": "",
+                                              },
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 91,
+                                                  "line": 14,
+                                                  "offset": 536,
+                                                },
+                                                "internal_type": "TemplateElement",
+                                                "roles": Array [
+                                                  88,
+                                                  98,
+                                                  109,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 82,
+                                                  "line": 14,
+                                                  "offset": 527,
+                                                },
+                                                "token": "",
+                                              },
+                                            ],
+                                            "end_position": Object {
+                                              "col": 92,
+                                              "line": 14,
+                                              "offset": 537,
+                                            },
+                                            "internal_type": "TemplateLiteral",
+                                            "roles": Array [
+                                              84,
+                                              49,
+                                              18,
+                                              88,
+                                              109,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 15,
+                                              "line": 14,
+                                              "offset": 460,
+                                            },
+                                            "token": "",
+                                          },
+                                        ],
+                                        "end_position": Object {
+                                          "col": 93,
+                                          "line": 14,
+                                          "offset": 538,
+                                        },
+                                        "internal_type": "CallExpression",
+                                        "roles": Array [
+                                          45,
+                                          46,
+                                          18,
+                                          84,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 3,
+                                          "line": 14,
+                                          "offset": 448,
+                                        },
+                                        "token": "",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 93,
+                                      "line": 14,
+                                      "offset": 538,
+                                    },
+                                    "internal_type": "ArrowFunctionExpression",
+                                    "roles": Array [
+                                      41,
+                                      45,
+                                      18,
+                                      84,
+                                      49,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 43,
+                                      "line": 13,
+                                      "offset": 440,
+                                    },
+                                    "token": "",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 94,
+                                  "line": 14,
+                                  "offset": 539,
+                                },
+                                "internal_type": "CallExpression",
+                                "roles": Array [
+                                  18,
+                                  84,
+                                ],
+                                "start_position": Object {
+                                  "col": 1,
+                                  "line": 13,
+                                  "offset": 398,
+                                },
+                                "token": "",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 95,
+                              "line": 14,
+                              "offset": 540,
+                            },
+                            "internal_type": "ExpressionStatement",
+                            "roles": Array [
+                              19,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 13,
+                              "offset": 398,
+                            },
+                            "token": "",
+                          },
+                        ],
+                        "end_position": Object {
+                          "col": 1,
+                          "line": 15,
+                          "offset": 541,
+                        },
+                        "internal_type": "Program",
+                        "roles": Array [
+                          57,
+                        ],
+                        "start_position": Object {
+                          "col": 1,
+                          "line": 1,
+                          "offset": 0,
+                        },
+                        "token": "",
+                      },
+                    ],
+                    "end_position": Object {
+                      "col": 1,
+                      "line": 15,
+                      "offset": 541,
+                    },
+                    "internal_type": "File",
+                    "roles": Array [
+                      34,
+                    ],
+                    "start_position": Object {
+                      "col": 1,
+                      "line": 1,
+                      "offset": 0,
+                    },
+                    "token": "",
+                  },
+                ],
+              },
+            ],
+          },
+          "isTag": true,
+          "name": "refs/tags/v0.0.1",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: files.uastRaw 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "files": Array [
+              Object {
+                "path": "server.js",
+                "uastRaw": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "children": Array [
+                          Object {
+                            "children": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 15,
+                                      "line": 1,
+                                      "offset": 14,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 8,
+                                      "line": 1,
+                                      "offset": 7,
+                                    },
+                                    "token": "express",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 15,
+                                  "line": 1,
+                                  "offset": 14,
+                                },
+                                "internal_type": "ImportDefaultSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 8,
+                                  "line": 1,
+                                  "offset": 7,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 30,
+                                  "line": 1,
+                                  "offset": 29,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 21,
+                                  "line": 1,
+                                  "offset": 20,
+                                },
+                                "token": "express",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 31,
+                              "line": 1,
+                              "offset": 30,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 1,
+                              "offset": 0,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "children": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 24,
+                                      "line": 2,
+                                      "offset": 54,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 10,
+                                      "line": 2,
+                                      "offset": 40,
+                                    },
+                                    "token": "graphqlExpress",
+                                  },
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 24,
+                                      "line": 2,
+                                      "offset": 54,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 10,
+                                      "line": 2,
+                                      "offset": 40,
+                                    },
+                                    "token": "graphqlExpress",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 24,
+                                  "line": 2,
+                                  "offset": 54,
+                                },
+                                "internal_type": "ImportSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 10,
+                                  "line": 2,
+                                  "offset": 40,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 41,
+                                      "line": 2,
+                                      "offset": 71,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 26,
+                                      "line": 2,
+                                      "offset": 56,
+                                    },
+                                    "token": "graphiqlExpress",
+                                  },
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 41,
+                                      "line": 2,
+                                      "offset": 71,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 26,
+                                      "line": 2,
+                                      "offset": 56,
+                                    },
+                                    "token": "graphiqlExpress",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 41,
+                                  "line": 2,
+                                  "offset": 71,
+                                },
+                                "internal_type": "ImportSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 26,
+                                  "line": 2,
+                                  "offset": 56,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 72,
+                                  "line": 2,
+                                  "offset": 102,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 49,
+                                  "line": 2,
+                                  "offset": 79,
+                                },
+                                "token": "apollo-server-express",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 73,
+                              "line": 2,
+                              "offset": 103,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 2,
+                              "offset": 31,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "children": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 18,
+                                      "line": 3,
+                                      "offset": 121,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 8,
+                                      "line": 3,
+                                      "offset": 111,
+                                    },
+                                    "token": "bodyParser",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 18,
+                                  "line": 3,
+                                  "offset": 121,
+                                },
+                                "internal_type": "ImportDefaultSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 8,
+                                  "line": 3,
+                                  "offset": 111,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 37,
+                                  "line": 3,
+                                  "offset": 140,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 24,
+                                  "line": 3,
+                                  "offset": 127,
+                                },
+                                "token": "body-parser",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 38,
+                              "line": 3,
+                              "offset": 141,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 3,
+                              "offset": 104,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "children": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 14,
+                                      "line": 4,
+                                      "offset": 155,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 8,
+                                      "line": 4,
+                                      "offset": 149,
+                                    },
+                                    "token": "schema",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 14,
+                                  "line": 4,
+                                  "offset": 155,
+                                },
+                                "internal_type": "ImportDefaultSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 8,
+                                  "line": 4,
+                                  "offset": 149,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 35,
+                                  "line": 4,
+                                  "offset": 176,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 20,
+                                  "line": 4,
+                                  "offset": 161,
+                                },
+                                "token": "./data/schema",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 36,
+                              "line": 4,
+                              "offset": 177,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 4,
+                              "offset": 142,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "children": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 12,
+                                      "line": 5,
+                                      "offset": 189,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                      42,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 8,
+                                      "line": 5,
+                                      "offset": 185,
+                                    },
+                                    "token": "args",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 12,
+                                  "line": 5,
+                                  "offset": 189,
+                                },
+                                "internal_type": "ImportDefaultSpecifier",
+                                "roles": Array [
+                                  42,
+                                ],
+                                "start_position": Object {
+                                  "col": 8,
+                                  "line": 5,
+                                  "offset": 185,
+                                },
+                                "token": "",
+                              },
+                              Object {
+                                "children": Array [],
+                                "end_position": Object {
+                                  "col": 26,
+                                  "line": 5,
+                                  "offset": 203,
+                                },
+                                "internal_type": "StringLiteral",
+                                "roles": Array [
+                                  18,
+                                  88,
+                                  98,
+                                  42,
+                                  43,
+                                ],
+                                "start_position": Object {
+                                  "col": 18,
+                                  "line": 5,
+                                  "offset": 195,
+                                },
+                                "token": "./args",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 27,
+                              "line": 5,
+                              "offset": 204,
+                            },
+                            "internal_type": "ImportDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              42,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 5,
+                              "offset": 178,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "children": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 20,
+                                      "line": 8,
+                                      "offset": 226,
+                                    },
+                                    "internal_type": "Identifier",
+                                    "roles": Array [
+                                      18,
+                                      1,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 7,
+                                      "line": 8,
+                                      "offset": 213,
+                                    },
+                                    "token": "graphQLServer",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 30,
+                                          "line": 8,
+                                          "offset": 236,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                          84,
+                                          85,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 23,
+                                          "line": 8,
+                                          "offset": 229,
+                                        },
+                                        "token": "express",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 32,
+                                      "line": 8,
+                                      "offset": 238,
+                                    },
+                                    "internal_type": "CallExpression",
+                                    "roles": Array [
+                                      68,
+                                      18,
+                                      84,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 23,
+                                      "line": 8,
+                                      "offset": 229,
+                                    },
+                                    "token": "",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 32,
+                                  "line": 8,
+                                  "offset": 238,
+                                },
+                                "internal_type": "VariableDeclarator",
+                                "roles": Array [
+                                  41,
+                                  117,
+                                ],
+                                "start_position": Object {
+                                  "col": 7,
+                                  "line": 8,
+                                  "offset": 213,
+                                },
+                                "token": "",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 33,
+                              "line": 8,
+                              "offset": 239,
+                            },
+                            "internal_type": "VariableDeclaration",
+                            "roles": Array [
+                              19,
+                              41,
+                              117,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 8,
+                              "offset": 207,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "children": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 14,
+                                          "line": 10,
+                                          "offset": 254,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 1,
+                                          "line": 10,
+                                          "offset": 241,
+                                        },
+                                        "token": "graphQLServer",
+                                      },
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 18,
+                                          "line": 10,
+                                          "offset": 258,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 15,
+                                          "line": 10,
+                                          "offset": 255,
+                                        },
+                                        "token": "use",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 18,
+                                      "line": 10,
+                                      "offset": 258,
+                                    },
+                                    "internal_type": "MemberExpression",
+                                    "roles": Array [
+                                      2,
+                                      18,
+                                      1,
+                                      84,
+                                      85,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 1,
+                                      "line": 10,
+                                      "offset": 241,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 29,
+                                      "line": 10,
+                                      "offset": 269,
+                                    },
+                                    "internal_type": "StringLiteral",
+                                    "roles": Array [
+                                      18,
+                                      88,
+                                      98,
+                                      84,
+                                      49,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 19,
+                                      "line": 10,
+                                      "offset": 259,
+                                    },
+                                    "token": "/graphql",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [
+                                          Object {
+                                            "children": Array [],
+                                            "end_position": Object {
+                                              "col": 41,
+                                              "line": 10,
+                                              "offset": 281,
+                                            },
+                                            "internal_type": "Identifier",
+                                            "roles": Array [
+                                              18,
+                                              1,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 31,
+                                              "line": 10,
+                                              "offset": 271,
+                                            },
+                                            "token": "bodyParser",
+                                          },
+                                          Object {
+                                            "children": Array [],
+                                            "end_position": Object {
+                                              "col": 46,
+                                              "line": 10,
+                                              "offset": 286,
+                                            },
+                                            "internal_type": "Identifier",
+                                            "roles": Array [
+                                              18,
+                                              1,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 42,
+                                              "line": 10,
+                                              "offset": 282,
+                                            },
+                                            "token": "json",
+                                          },
+                                        ],
+                                        "end_position": Object {
+                                          "col": 46,
+                                          "line": 10,
+                                          "offset": 286,
+                                        },
+                                        "internal_type": "MemberExpression",
+                                        "roles": Array [
+                                          2,
+                                          18,
+                                          1,
+                                          84,
+                                          85,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 31,
+                                          "line": 10,
+                                          "offset": 271,
+                                        },
+                                        "token": "",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 48,
+                                      "line": 10,
+                                      "offset": 288,
+                                    },
+                                    "internal_type": "CallExpression",
+                                    "roles": Array [
+                                      84,
+                                      49,
+                                      18,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 31,
+                                      "line": 10,
+                                      "offset": 271,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 64,
+                                          "line": 10,
+                                          "offset": 304,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                          84,
+                                          85,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 50,
+                                          "line": 10,
+                                          "offset": 290,
+                                        },
+                                        "token": "graphqlExpress",
+                                      },
+                                      Object {
+                                        "children": Array [
+                                          Object {
+                                            "children": Array [
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 73,
+                                                  "line": 10,
+                                                  "offset": 313,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                  93,
+                                                  102,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 67,
+                                                  "line": 10,
+                                                  "offset": 307,
+                                                },
+                                                "token": "schema",
+                                              },
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 73,
+                                                  "line": 10,
+                                                  "offset": 313,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                  93,
+                                                  50,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 67,
+                                                  "line": 10,
+                                                  "offset": 307,
+                                                },
+                                                "token": "schema",
+                                              },
+                                            ],
+                                            "end_position": Object {
+                                              "col": 73,
+                                              "line": 10,
+                                              "offset": 313,
+                                            },
+                                            "internal_type": "ObjectProperty",
+                                            "roles": Array [
+                                              93,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 67,
+                                              "line": 10,
+                                              "offset": 307,
+                                            },
+                                            "token": "",
+                                          },
+                                        ],
+                                        "end_position": Object {
+                                          "col": 75,
+                                          "line": 10,
+                                          "offset": 315,
+                                        },
+                                        "internal_type": "ObjectExpression",
+                                        "roles": Array [
+                                          18,
+                                          68,
+                                          93,
+                                          88,
+                                          84,
+                                          49,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 65,
+                                          "line": 10,
+                                          "offset": 305,
+                                        },
+                                        "token": "",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 76,
+                                      "line": 10,
+                                      "offset": 316,
+                                    },
+                                    "internal_type": "CallExpression",
+                                    "roles": Array [
+                                      84,
+                                      49,
+                                      18,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 50,
+                                      "line": 10,
+                                      "offset": 290,
+                                    },
+                                    "token": "",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 77,
+                                  "line": 10,
+                                  "offset": 317,
+                                },
+                                "internal_type": "CallExpression",
+                                "roles": Array [
+                                  18,
+                                  84,
+                                ],
+                                "start_position": Object {
+                                  "col": 1,
+                                  "line": 10,
+                                  "offset": 241,
+                                },
+                                "token": "",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 78,
+                              "line": 10,
+                              "offset": 318,
+                            },
+                            "internal_type": "ExpressionStatement",
+                            "roles": Array [
+                              19,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 10,
+                              "offset": 241,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "children": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 14,
+                                          "line": 11,
+                                          "offset": 332,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 1,
+                                          "line": 11,
+                                          "offset": 319,
+                                        },
+                                        "token": "graphQLServer",
+                                      },
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 18,
+                                          "line": 11,
+                                          "offset": 336,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 15,
+                                          "line": 11,
+                                          "offset": 333,
+                                        },
+                                        "token": "use",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 18,
+                                      "line": 11,
+                                      "offset": 336,
+                                    },
+                                    "internal_type": "MemberExpression",
+                                    "roles": Array [
+                                      2,
+                                      18,
+                                      1,
+                                      84,
+                                      85,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 1,
+                                      "line": 11,
+                                      "offset": 319,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [],
+                                    "end_position": Object {
+                                      "col": 30,
+                                      "line": 11,
+                                      "offset": 348,
+                                    },
+                                    "internal_type": "StringLiteral",
+                                    "roles": Array [
+                                      18,
+                                      88,
+                                      98,
+                                      84,
+                                      49,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 19,
+                                      "line": 11,
+                                      "offset": 337,
+                                    },
+                                    "token": "/graphiql",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 47,
+                                          "line": 11,
+                                          "offset": 365,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                          84,
+                                          85,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 32,
+                                          "line": 11,
+                                          "offset": 350,
+                                        },
+                                        "token": "graphiqlExpress",
+                                      },
+                                      Object {
+                                        "children": Array [
+                                          Object {
+                                            "children": Array [
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 61,
+                                                  "line": 11,
+                                                  "offset": 379,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                  93,
+                                                  102,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 50,
+                                                  "line": 11,
+                                                  "offset": 368,
+                                                },
+                                                "token": "endpointURL",
+                                              },
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 73,
+                                                  "line": 11,
+                                                  "offset": 391,
+                                                },
+                                                "internal_type": "StringLiteral",
+                                                "roles": Array [
+                                                  18,
+                                                  88,
+                                                  98,
+                                                  93,
+                                                  50,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 63,
+                                                  "line": 11,
+                                                  "offset": 381,
+                                                },
+                                                "token": "/graphql",
+                                              },
+                                            ],
+                                            "end_position": Object {
+                                              "col": 73,
+                                              "line": 11,
+                                              "offset": 391,
+                                            },
+                                            "internal_type": "ObjectProperty",
+                                            "roles": Array [
+                                              93,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 50,
+                                              "line": 11,
+                                              "offset": 368,
+                                            },
+                                            "token": "",
+                                          },
+                                        ],
+                                        "end_position": Object {
+                                          "col": 75,
+                                          "line": 11,
+                                          "offset": 393,
+                                        },
+                                        "internal_type": "ObjectExpression",
+                                        "roles": Array [
+                                          18,
+                                          68,
+                                          93,
+                                          88,
+                                          84,
+                                          49,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 48,
+                                          "line": 11,
+                                          "offset": 366,
+                                        },
+                                        "token": "",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 76,
+                                      "line": 11,
+                                      "offset": 394,
+                                    },
+                                    "internal_type": "CallExpression",
+                                    "roles": Array [
+                                      84,
+                                      49,
+                                      18,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 32,
+                                      "line": 11,
+                                      "offset": 350,
+                                    },
+                                    "token": "",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 77,
+                                  "line": 11,
+                                  "offset": 395,
+                                },
+                                "internal_type": "CallExpression",
+                                "roles": Array [
+                                  18,
+                                  84,
+                                ],
+                                "start_position": Object {
+                                  "col": 1,
+                                  "line": 11,
+                                  "offset": 319,
+                                },
+                                "token": "",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 78,
+                              "line": 11,
+                              "offset": 396,
+                            },
+                            "internal_type": "ExpressionStatement",
+                            "roles": Array [
+                              19,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 11,
+                              "offset": 319,
+                            },
+                            "token": "",
+                          },
+                          Object {
+                            "children": Array [
+                              Object {
+                                "children": Array [
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 14,
+                                          "line": 13,
+                                          "offset": 411,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 1,
+                                          "line": 13,
+                                          "offset": 398,
+                                        },
+                                        "token": "graphQLServer",
+                                      },
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 21,
+                                          "line": 13,
+                                          "offset": 418,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 15,
+                                          "line": 13,
+                                          "offset": 412,
+                                        },
+                                        "token": "listen",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 21,
+                                      "line": 13,
+                                      "offset": 418,
+                                    },
+                                    "internal_type": "MemberExpression",
+                                    "roles": Array [
+                                      2,
+                                      18,
+                                      1,
+                                      84,
+                                      85,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 1,
+                                      "line": 13,
+                                      "offset": 398,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 26,
+                                          "line": 13,
+                                          "offset": 423,
+                                        },
+                                        "internal_type": "Identifier",
+                                        "roles": Array [
+                                          18,
+                                          1,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 22,
+                                          "line": 13,
+                                          "offset": 419,
+                                        },
+                                        "token": "args",
+                                      },
+                                      Object {
+                                        "children": Array [],
+                                        "end_position": Object {
+                                          "col": 40,
+                                          "line": 13,
+                                          "offset": 437,
+                                        },
+                                        "internal_type": "StringLiteral",
+                                        "roles": Array [
+                                          18,
+                                          88,
+                                          98,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 27,
+                                          "line": 13,
+                                          "offset": 424,
+                                        },
+                                        "token": "listen-port",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 41,
+                                      "line": 13,
+                                      "offset": 438,
+                                    },
+                                    "internal_type": "MemberExpression",
+                                    "roles": Array [
+                                      2,
+                                      18,
+                                      1,
+                                      84,
+                                      49,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 22,
+                                      "line": 13,
+                                      "offset": 419,
+                                    },
+                                    "token": "",
+                                  },
+                                  Object {
+                                    "children": Array [
+                                      Object {
+                                        "children": Array [
+                                          Object {
+                                            "children": Array [
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 10,
+                                                  "line": 14,
+                                                  "offset": 455,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 3,
+                                                  "line": 14,
+                                                  "offset": 448,
+                                                },
+                                                "token": "console",
+                                              },
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 14,
+                                                  "line": 14,
+                                                  "offset": 459,
+                                                },
+                                                "internal_type": "Identifier",
+                                                "roles": Array [
+                                                  18,
+                                                  1,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 11,
+                                                  "line": 14,
+                                                  "offset": 456,
+                                                },
+                                                "token": "log",
+                                              },
+                                            ],
+                                            "end_position": Object {
+                                              "col": 14,
+                                              "line": 14,
+                                              "offset": 459,
+                                            },
+                                            "internal_type": "MemberExpression",
+                                            "roles": Array [
+                                              2,
+                                              18,
+                                              1,
+                                              84,
+                                              85,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 3,
+                                              "line": 14,
+                                              "offset": 448,
+                                            },
+                                            "token": "",
+                                          },
+                                          Object {
+                                            "children": Array [
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 60,
+                                                  "line": 14,
+                                                  "offset": 505,
+                                                },
+                                                "internal_type": "TemplateElement",
+                                                "roles": Array [
+                                                  88,
+                                                  98,
+                                                  109,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 16,
+                                                  "line": 14,
+                                                  "offset": 461,
+                                                },
+                                                "token": "",
+                                              },
+                                              Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "children": Array [],
+                                                    "end_position": Object {
+                                                      "col": 66,
+                                                      "line": 14,
+                                                      "offset": 511,
+                                                    },
+                                                    "internal_type": "Identifier",
+                                                    "roles": Array [
+                                                      18,
+                                                      1,
+                                                    ],
+                                                    "start_position": Object {
+                                                      "col": 62,
+                                                      "line": 14,
+                                                      "offset": 507,
+                                                    },
+                                                    "token": "args",
+                                                  },
+                                                  Object {
+                                                    "children": Array [],
+                                                    "end_position": Object {
+                                                      "col": 80,
+                                                      "line": 14,
+                                                      "offset": 525,
+                                                    },
+                                                    "internal_type": "StringLiteral",
+                                                    "roles": Array [
+                                                      18,
+                                                      88,
+                                                      98,
+                                                    ],
+                                                    "start_position": Object {
+                                                      "col": 67,
+                                                      "line": 14,
+                                                      "offset": 512,
+                                                    },
+                                                    "token": "listen-port",
+                                                  },
+                                                ],
+                                                "end_position": Object {
+                                                  "col": 81,
+                                                  "line": 14,
+                                                  "offset": 526,
+                                                },
+                                                "internal_type": "MemberExpression",
+                                                "roles": Array [
+                                                  2,
+                                                  18,
+                                                  1,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 62,
+                                                  "line": 14,
+                                                  "offset": 507,
+                                                },
+                                                "token": "",
+                                              },
+                                              Object {
+                                                "children": Array [],
+                                                "end_position": Object {
+                                                  "col": 91,
+                                                  "line": 14,
+                                                  "offset": 536,
+                                                },
+                                                "internal_type": "TemplateElement",
+                                                "roles": Array [
+                                                  88,
+                                                  98,
+                                                  109,
+                                                ],
+                                                "start_position": Object {
+                                                  "col": 82,
+                                                  "line": 14,
+                                                  "offset": 527,
+                                                },
+                                                "token": "",
+                                              },
+                                            ],
+                                            "end_position": Object {
+                                              "col": 92,
+                                              "line": 14,
+                                              "offset": 537,
+                                            },
+                                            "internal_type": "TemplateLiteral",
+                                            "roles": Array [
+                                              84,
+                                              49,
+                                              18,
+                                              88,
+                                              109,
+                                            ],
+                                            "start_position": Object {
+                                              "col": 15,
+                                              "line": 14,
+                                              "offset": 460,
+                                            },
+                                            "token": "",
+                                          },
+                                        ],
+                                        "end_position": Object {
+                                          "col": 93,
+                                          "line": 14,
+                                          "offset": 538,
+                                        },
+                                        "internal_type": "CallExpression",
+                                        "roles": Array [
+                                          45,
+                                          46,
+                                          18,
+                                          84,
+                                        ],
+                                        "start_position": Object {
+                                          "col": 3,
+                                          "line": 14,
+                                          "offset": 448,
+                                        },
+                                        "token": "",
+                                      },
+                                    ],
+                                    "end_position": Object {
+                                      "col": 93,
+                                      "line": 14,
+                                      "offset": 538,
+                                    },
+                                    "internal_type": "ArrowFunctionExpression",
+                                    "roles": Array [
+                                      41,
+                                      45,
+                                      18,
+                                      84,
+                                      49,
+                                    ],
+                                    "start_position": Object {
+                                      "col": 43,
+                                      "line": 13,
+                                      "offset": 440,
+                                    },
+                                    "token": "",
+                                  },
+                                ],
+                                "end_position": Object {
+                                  "col": 94,
+                                  "line": 14,
+                                  "offset": 539,
+                                },
+                                "internal_type": "CallExpression",
+                                "roles": Array [
+                                  18,
+                                  84,
+                                ],
+                                "start_position": Object {
+                                  "col": 1,
+                                  "line": 13,
+                                  "offset": 398,
+                                },
+                                "token": "",
+                              },
+                            ],
+                            "end_position": Object {
+                              "col": 95,
+                              "line": 14,
+                              "offset": 540,
+                            },
+                            "internal_type": "ExpressionStatement",
+                            "roles": Array [
+                              19,
+                            ],
+                            "start_position": Object {
+                              "col": 1,
+                              "line": 13,
+                              "offset": 398,
+                            },
+                            "token": "",
+                          },
+                        ],
+                        "end_position": Object {
+                          "col": 1,
+                          "line": 15,
+                          "offset": 541,
+                        },
+                        "internal_type": "Program",
+                        "roles": Array [
+                          57,
+                        ],
+                        "start_position": Object {
+                          "col": 1,
+                          "line": 1,
+                          "offset": 0,
+                        },
+                        "token": "",
+                      },
+                    ],
+                    "end_position": Object {
+                      "col": 1,
+                      "line": 15,
+                      "offset": 541,
+                    },
+                    "internal_type": "File",
+                    "roles": Array [
+                      34,
+                    ],
+                    "start_position": Object {
+                      "col": 1,
+                      "line": 1,
+                      "offset": 0,
+                    },
+                    "token": "",
+                  },
+                ],
+              },
+            ],
+          },
+          "isTag": true,
+          "name": "refs/tags/v0.0.1",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: gitbase-graphql 0.0.2 commits 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commits": Array [
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "5710209084872511ef40b738db0730a4af56fbad",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "7cf5dcdf9731cf9427aadb1d5718f36ba9f85dde",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "b1e0888d41d3235088027e8217b4cc0a808e4c86",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "7877ff1d4d47a71467dc74c1e04e708f476185e7",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "1dbbe8bae30ef8477c6d7bf7a61f1011a7ab15fb",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "82d941cc9c59887b9be8e4738bceed43ffcd2f2a",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "115cce725dcc2f14f5e8a36fb173452e3f892e2e",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "7b34d9376df46a635da229579925a3f885277530",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "b338597cc9e1225eb6e08d50b1fa29be36615f63",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "d5b92a0ab86dcf078e1c3f64d9a0baa4c537c2b1",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "06226940a9de08735145e6500e68eee7308a8286",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "cb8ca041a3ff3b1734f79706481bd722d33362bd",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "1fca8018595981fd66a49cd23fe281269185f432",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "0a1bc11c6c86cf3f932a04cdd144dfad7e7f2b40",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "e98627b418d407f04a506fa3d254620f432a7857",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "9e71f6d0fc0c7d4ee3daed743e75311aae3ff3b7",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "0fe13bd8bfe18ed64fda31ecadd58af00f4f6fc7",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "80f17ea44ed78d608ba0e00144ade5ade12074ce",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "8885dc46fdf4309c254c3233219f1b0582d7f681",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "cf3e35230cf706cb1a17bb00c8f514856d77a783",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "0411efafec3be67bfc72cab22fbfdb20dfde584c",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "83801590f8eeb8034c0b1cb0d2f82c28a4955945",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "05def6bacc5e158b9d878c898da1cda4227c9ebc",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "a7ababc3cdcf8410fa514daece5556d669a35d54",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "7234e5f92aa475f12df7b0e4aa576d6da62c3ae4",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "dd67b36fc76fe6ba51127616dd1f7a59f7c78f7f",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "c3fc541b779ab6935c7741ddfbd206303f5c0877",
+            },
+            Object {
+              "authorName": "Carlos Martín",
+              "hash": "c460f5cae32b1755e17527d13023fdd2599a7c97",
+            },
+          ],
+          "isRemote": false,
+          "isTag": true,
+          "name": "refs/tags/v0.0.2",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: gitbase-graphql 0.0.4 commit 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "authorEmail": "carlos.martin.sanchez@gmail.com",
+            "authorName": "Carlos Martín",
+            "authorWhen": "Mon Jul 09 2018 17:20:30 GMT+0200 (CEST)",
+            "committerEmail": "carlos.martin.sanchez@gmail.com",
+            "committerName": "Carlos Martín",
+            "committerWhen": "Mon Jul 09 2018 17:20:30 GMT+0200 (CEST)",
+            "hash": "9f6a686b3ddd9c98e1bf0936b8182d8d935a3cf2",
+            "message": "Add uast filter_func argument
+
+Signed-off-by: Carlos Martín <carlos.martin.sanchez@gmail.com>
+",
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`Integration Test Queries query: origin & HEAD 1`] = `
+Object {
+  "data": Object {
+    "allRepositories": Array [
+      Object {
+        "id": "gitbase-graphql",
+        "refs": Array [
+          Object {
+            "name": "HEAD",
+          },
+        ],
+        "remotes": Array [
+          Object {
+            "fetchUrl": "https://github.com/carlosms/gitbase-graphql.git",
+            "name": "origin",
+            "pushUrl": "https://github.com/carlosms/gitbase-graphql.git",
+          },
+        ],
+      },
+    ],
+  },
+}
+`;
+
+exports[`Integration Test Queries query: repo by id 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+    },
+  },
+}
+`;
