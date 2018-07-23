@@ -66,10 +66,8 @@ const testCases = [
             hash
             authorName
             authorEmail
-            authorWhen
             committerName
             committerEmail
-            committerWhen
             message
           }
         }

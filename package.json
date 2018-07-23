@@ -36,6 +36,7 @@
     "lint": "eslint .",
     "format": "eslint --fix .",
     "docs": "npx graphql-markdown http://localhost:3000/graphql > schema.md",
-    "test": "./test.sh"
+    "test": "./test.sh",
+    "coverage": "codecov"
   }
 }

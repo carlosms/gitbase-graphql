@@ -3992,10 +3992,8 @@ Object {
           "commit": Object {
             "authorEmail": "carlos.martin.sanchez@gmail.com",
             "authorName": "Carlos Martín",
-            "authorWhen": "Mon Jul 09 2018 17:20:30 GMT+0200 (CEST)",
             "committerEmail": "carlos.martin.sanchez@gmail.com",
             "committerName": "Carlos Martín",
-            "committerWhen": "Mon Jul 09 2018 17:20:30 GMT+0200 (CEST)",
             "hash": "9f6a686b3ddd9c98e1bf0936b8182d8d935a3cf2",
             "message": "Add uast filter_func argument
 

@@ -28,7 +28,10 @@ jobs:
     - stage: test
       script:
         - yarn install
-        - yarn test
+        # Default gitbase port 3306 is in use in Travis
+        - sed -i "s/3306:3306/"3356:3306"/" docker-compose.yml
+        - GITBASE_GQL_DB_PORT=3356 yarn test
+        - yarn coverage
       name: integration tests
     - stage: push to dockerhub
       script:
