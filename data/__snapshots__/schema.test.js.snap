@@ -1,0 +1,264 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Schema query: allRepositories 1`] = `
+Object {
+  "data": Object {
+    "allRepositories": Array [
+      Object {
+        "id": "abcde",
+        "refs": Array [
+          Object {
+            "commit": Object {
+              "authorName": "abcde",
+              "authorWhen": "abcde",
+              "files": Array [
+                Object {
+                  "language": "abcde",
+                  "path": "abcde",
+                  "size": 1,
+                  "uast": Array [
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                  ],
+                },
+                Object {
+                  "language": "abcde",
+                  "path": "abcde",
+                  "size": 1,
+                  "uast": Array [
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                  ],
+                },
+              ],
+              "hash": "abcde",
+            },
+            "isTag": false,
+            "name": "abcde",
+          },
+          Object {
+            "commit": Object {
+              "authorName": "abcde",
+              "authorWhen": "abcde",
+              "files": Array [
+                Object {
+                  "language": "abcde",
+                  "path": "abcde",
+                  "size": 1,
+                  "uast": Array [
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                  ],
+                },
+                Object {
+                  "language": "abcde",
+                  "path": "abcde",
+                  "size": 1,
+                  "uast": Array [
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                  ],
+                },
+              ],
+              "hash": "abcde",
+            },
+            "isTag": false,
+            "name": "abcde",
+          },
+        ],
+        "remotes": Array [
+          Object {
+            "name": "abcde",
+          },
+          Object {
+            "name": "abcde",
+          },
+        ],
+      },
+      Object {
+        "id": "abcde",
+        "refs": Array [
+          Object {
+            "commit": Object {
+              "authorName": "abcde",
+              "authorWhen": "abcde",
+              "files": Array [
+                Object {
+                  "language": "abcde",
+                  "path": "abcde",
+                  "size": 1,
+                  "uast": Array [
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                  ],
+                },
+                Object {
+                  "language": "abcde",
+                  "path": "abcde",
+                  "size": 1,
+                  "uast": Array [
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                  ],
+                },
+              ],
+              "hash": "abcde",
+            },
+            "isTag": false,
+            "name": "abcde",
+          },
+          Object {
+            "commit": Object {
+              "authorName": "abcde",
+              "authorWhen": "abcde",
+              "files": Array [
+                Object {
+                  "language": "abcde",
+                  "path": "abcde",
+                  "size": 1,
+                  "uast": Array [
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                  ],
+                },
+                Object {
+                  "language": "abcde",
+                  "path": "abcde",
+                  "size": 1,
+                  "uast": Array [
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                    Object {
+                      "internal_type": "abcde",
+                      "roles": Array [
+                        1,
+                        1,
+                      ],
+                      "token": "abcde",
+                    },
+                  ],
+                },
+              ],
+              "hash": "abcde",
+            },
+            "isTag": false,
+            "name": "abcde",
+          },
+        ],
+        "remotes": Array [
+          Object {
+            "name": "abcde",
+          },
+          Object {
+            "name": "abcde",
+          },
+        ],
+      },
+    ],
+  },
+}
+`;

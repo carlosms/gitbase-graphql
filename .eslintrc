@@ -3,5 +3,9 @@
   "rules": {
     "no-console": "off",
     "no-underscore-dangle": "off"
+  },
+  "plugins": ["jest"],
+  "env": {
+    "jest/globals": true
   }
 }
