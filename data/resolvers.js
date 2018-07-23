@@ -361,7 +361,7 @@ const resolvers = {
       WHERE commit_blobs.commit_hash='${commit.hash}'`;
 
       if (args && args.hash) {
-        sql += ` AND blob_hash='${args.hash}'`;
+        sql += ` AND blobs.blob_hash='${args.hash}'`;
       }
 
       return blobsQuery(sql);
