@@ -41,7 +41,12 @@
 <tr>
 <td colspan="2" align="right" valign="top">id</td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+The path to the repository folder.
+In case of [siva files](https://github.com/src-d/go-siva/), the id is the path + the siva file name.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>allRepositories</strong></td>
@@ -510,7 +515,12 @@ Babelfish UAST Node, complete JSON
 <tr>
 <td colspan="2" valign="top"><strong>id</strong></td>
 <td valign="top"><a href="#string">String</a>!</td>
-<td></td>
+<td>
+
+The path to the repository folder.
+In case of [siva files](https://github.com/src-d/go-siva/), the id is the path + the siva file name.
+
+</td>
 </tr>
 <tr>
 <td colspan="2" valign="top"><strong>refs</strong></td>
@@ -539,61 +549,6 @@ Babelfish UAST Node, complete JSON
 </tr>
 <tr>
 <td colspan="2" align="right" valign="top">name</td>
-<td valign="top"><a href="#string">String</a></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" valign="top"><strong>commits</strong></td>
-<td valign="top">[<a href="#commit">Commit</a>]!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">authorName</td>
-<td valign="top"><a href="#string">String</a></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">authorEmail</td>
-<td valign="top"><a href="#string">String</a></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" valign="top"><strong>blobs</strong></td>
-<td valign="top">[<a href="#blob">Blob</a>]!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">hash</td>
-<td valign="top"><a href="#string">String</a></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" valign="top"><strong>treeEntries</strong></td>
-<td valign="top">[<a href="#treeentry">TreeEntry</a>]!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">name</td>
-<td valign="top"><a href="#string">String</a></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">language</td>
-<td valign="top"><a href="#string">String</a></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" valign="top"><strong>files</strong></td>
-<td valign="top">[<a href="#file">File</a>]!</td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">path</td>
-<td valign="top"><a href="#string">String</a></td>
-<td></td>
-</tr>
-<tr>
-<td colspan="2" align="right" valign="top">language</td>
 <td valign="top"><a href="#string">String</a></td>
 <td></td>
 </tr>

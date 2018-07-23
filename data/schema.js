@@ -5,18 +5,23 @@ const typeDefs = `
 scalar JSON
 
 type Query {
-  repository(id: String!): Repository
+  repository(
+    """
+    The path to the repository folder.
+    In case of [siva files](https://github.com/src-d/go-siva/), the id is the path + the siva file name.
+    """
+    id: String!): Repository
   allRepositories: [Repository]
 }
 
 type Repository {
+  """
+  The path to the repository folder.
+  In case of [siva files](https://github.com/src-d/go-siva/), the id is the path + the siva file name.
+  """
   id: String!
   refs(name: String, isRemote: Boolean, isTag: Boolean): [Ref]!
   remotes(name: String): [Remote]!
-  commits(authorName: String, authorEmail: String): [Commit]!
-  blobs(hash: String): [Blob]!
-  treeEntries(name: String, language: String): [TreeEntry]!
-  files(path: String, language: String): [File]!
 }
 
 type Ref {
@@ -181,4 +186,5 @@ type UASTPosition {
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
+export { typeDefs };
 export default schema;

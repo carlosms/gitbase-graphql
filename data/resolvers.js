@@ -314,18 +314,6 @@ const resolvers = {
           })));
       });
     },
-    commits(repository, args) {
-      return commits(`repository_id='${repository.id}'`, args);
-    },
-    blobs(repository, args) {
-      return blobs(`repository_id='${repository.id}'`, args);
-    },
-    treeEntries(repository, args) {
-      return treeEntries(`repository_id='${repository.id}'`, args);
-    },
-    files(repository, args) {
-      return files(`repository_id='${repository.id}'`, args);
-    },
   },
 
   Ref: {
