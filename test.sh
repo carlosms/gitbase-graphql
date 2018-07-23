@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Cloning test repositores..."
-REPOS_FOLDER=$PWD/test-repos
+REPOS_FOLDER=/tmp/test-repos
 mkdir $REPOS_FOLDER
 git clone https://github.com/carlosms/gitbase-graphql.git $REPOS_FOLDER/gitbase-graphql
 git clone https://github.com/src-d/gitbase.git $REPOS_FOLDER/gitbase
@@ -13,7 +13,7 @@ sleep 3s
 
 echo
 echo "Running jest tests..."
-npx jest --watch
+npx jest
 
 echo
 echo "Stopping gitbase & bblfshd containers..."
