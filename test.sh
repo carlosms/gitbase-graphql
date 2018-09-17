@@ -21,7 +21,10 @@ sleep 3s
 echo
 echo "Running jest tests..."
 npx jest --coverage --detectOpenHandles --forceExit
+RC=$?
 
 echo
 echo "Stopping gitbase & bblfshd containers..."
 docker-compose down
+
+exit $RC
