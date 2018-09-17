@@ -325,7 +325,7 @@ const resolvers = {
         .then(arrayToElem);
     },
     commits(ref, args) {
-      let sql = `SELECT commits.*, ref_commits.index
+      let sql = `SELECT commits.*, ref_commits.history_index
       FROM ref_commits INNER JOIN commits
         ON ref_commits.repository_id=commits.repository_id
         AND ref_commits.commit_hash=commits.commit_hash
