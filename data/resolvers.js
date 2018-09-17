@@ -240,7 +240,7 @@ function uastUDF(column, args) {
     uastArgs += `, '${args.xpath}'`;
   }
 
-  return `uast(${uastArgs})`;
+  return `uast_mode('annotated', ${uastArgs})`;
 }
 
 const resolvers = {
@@ -340,7 +340,7 @@ const resolvers = {
         sql += ` AND commits.commit_author_email='${args.authorEmail}'`;
       }
 
-      sql += ' ORDER BY ref_commits.index ASC';
+      sql += ' ORDER BY ref_commits.history_index ASC';
 
       return commitsQuery(sql);
     },
@@ -465,7 +465,8 @@ const resolvers = {
     },
     uast(file, args) {
       const sql = `SELECT ${uastUDF('files.blob_content', args)} as uast
-        FROM files WHERE blob_hash='${file._blob_hash}'`;
+        FROM files
+        WHERE blob_hash='${file._blob_hash}' AND tree_hash='${file.rootTreeHash}'`;
 
       return uastQuery(sql, args);
     },

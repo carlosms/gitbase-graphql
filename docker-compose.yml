@@ -10,7 +10,7 @@ services:
     depends_on:
       - gitbase
   gitbase:
-    image: "srcd/gitbase:v0.14.0"
+    image: "srcd/gitbase:v0.16.0"
     ports:
       - "3306:3306"
     environment:
@@ -18,7 +18,7 @@ services:
     volumes:
       - ${GITBASE_GQL_REPOS_FOLDER}:/opt/repos
   bblfsh:
-    image: "bblfsh/bblfshd:v2.5.1"
+    image: "bblfsh/bblfshd:v2.6.1"
     privileged: true
     ports:
       - "9432:9432"
@@ -29,7 +29,7 @@ services:
     entrypoint: ["/bin/sh"]
     command:
     - "-c"
-    - "bblfshd & sleep 1 && bblfshctl driver install --recommended && tail -f /dev/null"
+    - "bblfshd & sleep 1 && bblfshctl driver install --recommended --update && tail -f /dev/null"
 
 volumes:
   drivers:

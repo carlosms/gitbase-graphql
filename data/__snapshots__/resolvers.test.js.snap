@@ -648,6 +648,7 @@ Object {
                                 "internal_type": "ImportDefaultSpecifier",
                                 "roles": Array [
                                   42,
+                                  66,
                                 ],
                                 "start_position": Object {
                                   "col": 8,
@@ -891,6 +892,7 @@ Object {
                                 "internal_type": "ImportDefaultSpecifier",
                                 "roles": Array [
                                   42,
+                                  66,
                                 ],
                                 "start_position": Object {
                                   "col": 8,
@@ -973,6 +975,7 @@ Object {
                                 "internal_type": "ImportDefaultSpecifier",
                                 "roles": Array [
                                   42,
+                                  66,
                                 ],
                                 "start_position": Object {
                                   "col": 8,
@@ -1055,6 +1058,7 @@ Object {
                                 "internal_type": "ImportDefaultSpecifier",
                                 "roles": Array [
                                   42,
+                                  66,
                                 ],
                                 "start_position": Object {
                                   "col": 8,
@@ -1158,9 +1162,9 @@ Object {
                                     },
                                     "internal_type": "CallExpression",
                                     "roles": Array [
-                                      68,
                                       18,
                                       84,
+                                      68,
                                     ],
                                     "start_position": Object {
                                       "col": 23,
@@ -1364,9 +1368,9 @@ Object {
                                     },
                                     "internal_type": "CallExpression",
                                     "roles": Array [
+                                      18,
                                       84,
                                       49,
-                                      18,
                                     ],
                                     "start_position": Object {
                                       "col": 31,
@@ -1491,9 +1495,9 @@ Object {
                                     },
                                     "internal_type": "CallExpression",
                                     "roles": Array [
+                                      18,
                                       84,
                                       49,
-                                      18,
                                     ],
                                     "start_position": Object {
                                       "col": 50,
@@ -1741,9 +1745,9 @@ Object {
                                     },
                                     "internal_type": "CallExpression",
                                     "roles": Array [
+                                      18,
                                       84,
                                       49,
-                                      18,
                                     ],
                                     "start_position": Object {
                                       "col": 32,
@@ -1990,8 +1994,9 @@ Object {
                                                 },
                                                 "internal_type": "TemplateElement",
                                                 "roles": Array [
-                                                  88,
                                                   98,
+                                                  18,
+                                                  50,
                                                   109,
                                                 ],
                                                 "start_position": Object {
@@ -2070,8 +2075,9 @@ Object {
                                                 },
                                                 "internal_type": "TemplateElement",
                                                 "roles": Array [
-                                                  88,
                                                   98,
+                                                  18,
+                                                  50,
                                                   109,
                                                 ],
                                                 "start_position": Object {
@@ -2089,11 +2095,12 @@ Object {
                                             },
                                             "internal_type": "TemplateLiteral",
                                             "roles": Array [
-                                              84,
-                                              49,
                                               18,
                                               88,
+                                              98,
                                               109,
+                                              84,
+                                              49,
                                             ],
                                             "start_position": Object {
                                               "col": 15,
@@ -2110,10 +2117,10 @@ Object {
                                         },
                                         "internal_type": "CallExpression",
                                         "roles": Array [
-                                          45,
-                                          46,
                                           18,
                                           84,
+                                          45,
+                                          46,
                                         ],
                                         "start_position": Object {
                                           "col": 3,
@@ -2133,6 +2140,7 @@ Object {
                                       41,
                                       45,
                                       18,
+                                      113,
                                       84,
                                       49,
                                     ],
@@ -2274,6 +2282,7 @@ Object {
                                 "internal_type": "ImportDefaultSpecifier",
                                 "roles": Array [
                                   42,
+                                  66,
                                 ],
                                 "start_position": Object {
                                   "col": 8,
@@ -2517,6 +2526,7 @@ Object {
                                 "internal_type": "ImportDefaultSpecifier",
                                 "roles": Array [
                                   42,
+                                  66,
                                 ],
                                 "start_position": Object {
                                   "col": 8,
@@ -2599,6 +2609,7 @@ Object {
                                 "internal_type": "ImportDefaultSpecifier",
                                 "roles": Array [
                                   42,
+                                  66,
                                 ],
                                 "start_position": Object {
                                   "col": 8,
@@ -2681,6 +2692,7 @@ Object {
                                 "internal_type": "ImportDefaultSpecifier",
                                 "roles": Array [
                                   42,
+                                  66,
                                 ],
                                 "start_position": Object {
                                   "col": 8,
@@ -2784,9 +2796,9 @@ Object {
                                     },
                                     "internal_type": "CallExpression",
                                     "roles": Array [
-                                      68,
                                       18,
                                       84,
+                                      68,
                                     ],
                                     "start_position": Object {
                                       "col": 23,
@@ -2990,9 +3002,9 @@ Object {
                                     },
                                     "internal_type": "CallExpression",
                                     "roles": Array [
+                                      18,
                                       84,
                                       49,
-                                      18,
                                     ],
                                     "start_position": Object {
                                       "col": 31,
@@ -3117,9 +3129,9 @@ Object {
                                     },
                                     "internal_type": "CallExpression",
                                     "roles": Array [
+                                      18,
                                       84,
                                       49,
-                                      18,
                                     ],
                                     "start_position": Object {
                                       "col": 50,
@@ -3367,9 +3379,9 @@ Object {
                                     },
                                     "internal_type": "CallExpression",
                                     "roles": Array [
+                                      18,
                                       84,
                                       49,
-                                      18,
                                     ],
                                     "start_position": Object {
                                       "col": 32,
@@ -3616,8 +3628,9 @@ Object {
                                                 },
                                                 "internal_type": "TemplateElement",
                                                 "roles": Array [
-                                                  88,
                                                   98,
+                                                  18,
+                                                  50,
                                                   109,
                                                 ],
                                                 "start_position": Object {
@@ -3696,8 +3709,9 @@ Object {
                                                 },
                                                 "internal_type": "TemplateElement",
                                                 "roles": Array [
-                                                  88,
                                                   98,
+                                                  18,
+                                                  50,
                                                   109,
                                                 ],
                                                 "start_position": Object {
@@ -3715,11 +3729,12 @@ Object {
                                             },
                                             "internal_type": "TemplateLiteral",
                                             "roles": Array [
-                                              84,
-                                              49,
                                               18,
                                               88,
+                                              98,
                                               109,
+                                              84,
+                                              49,
                                             ],
                                             "start_position": Object {
                                               "col": 15,
@@ -3736,10 +3751,10 @@ Object {
                                         },
                                         "internal_type": "CallExpression",
                                         "roles": Array [
-                                          45,
-                                          46,
                                           18,
                                           84,
+                                          45,
+                                          46,
                                         ],
                                         "start_position": Object {
                                           "col": 3,
@@ -3759,6 +3774,7 @@ Object {
                                       41,
                                       45,
                                       18,
+                                      113,
                                       84,
                                       49,
                                     ],
