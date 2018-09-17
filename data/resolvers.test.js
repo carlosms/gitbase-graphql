@@ -307,6 +307,24 @@ const testCases = [
       }
     }`,
   },
+  {
+    id: 'files.uastRaw xpath filter',
+    query: `{
+      repository(id: "gitbase-graphql") {
+        id
+        refs(name: "refs/tags/v0.0.1") {
+          name
+          isTag
+          commit {
+            files(path: "server.js") {
+              path
+              uastRaw(language: "JavaScript", xpath:"//*[@roleNumber or @roleLiteral]")
+            }
+          }
+        }
+      }
+    }`,
+  },
 ];
 
 beforeAll(() => {

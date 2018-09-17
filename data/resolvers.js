@@ -229,18 +229,16 @@ function uastQuery(sql, args) {
 function uastUDF(column, args) {
   let uastArgs = column;
 
-  if (args.language || args.xpath) {
-    if (args.language) {
-      uastArgs += `, '${args.language}'`;
-    } else {
-      uastArgs += ", ''";
-    }
-  }
-  if (args.xpath) {
-    uastArgs += `, '${args.xpath}'`;
+  if (args.language) {
+    uastArgs += `, '${args.language}'`;
   }
 
-  return `uast_mode('annotated', ${uastArgs})`;
+  let udf = `uast_mode('annotated', ${uastArgs})`;
+  if (args.xpath) {
+    udf = `uast_xpath(${udf}, '${args.xpath}')`;
+  }
+
+  return udf;
 }
 
 const resolvers = {

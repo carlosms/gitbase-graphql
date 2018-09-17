@@ -3867,6 +3867,544 @@ Object {
 }
 `;
 
+exports[`Integration Test Queries query: files.uastRaw xpath filter 1`] = `
+Object {
+  "data": Object {
+    "repository": Object {
+      "id": "gitbase-graphql",
+      "refs": Array [
+        Object {
+          "commit": Object {
+            "files": Array [
+              Object {
+                "path": "server.js",
+                "uastRaw": Array [
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 30,
+                      "line": 1,
+                      "offset": 29,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                      42,
+                      43,
+                    ],
+                    "start_position": Object {
+                      "col": 21,
+                      "line": 1,
+                      "offset": 20,
+                    },
+                    "token": "express",
+                  },
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 72,
+                      "line": 2,
+                      "offset": 102,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                      42,
+                      43,
+                    ],
+                    "start_position": Object {
+                      "col": 49,
+                      "line": 2,
+                      "offset": 79,
+                    },
+                    "token": "apollo-server-express",
+                  },
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 37,
+                      "line": 3,
+                      "offset": 140,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                      42,
+                      43,
+                    ],
+                    "start_position": Object {
+                      "col": 24,
+                      "line": 3,
+                      "offset": 127,
+                    },
+                    "token": "body-parser",
+                  },
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 35,
+                      "line": 4,
+                      "offset": 176,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                      42,
+                      43,
+                    ],
+                    "start_position": Object {
+                      "col": 20,
+                      "line": 4,
+                      "offset": 161,
+                    },
+                    "token": "./data/schema",
+                  },
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 26,
+                      "line": 5,
+                      "offset": 203,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                      42,
+                      43,
+                    ],
+                    "start_position": Object {
+                      "col": 18,
+                      "line": 5,
+                      "offset": 195,
+                    },
+                    "token": "./args",
+                  },
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 29,
+                      "line": 10,
+                      "offset": 269,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                      84,
+                      49,
+                    ],
+                    "start_position": Object {
+                      "col": 19,
+                      "line": 10,
+                      "offset": 259,
+                    },
+                    "token": "/graphql",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "children": Array [
+                          Object {
+                            "children": Array [],
+                            "end_position": Object {
+                              "col": 73,
+                              "line": 10,
+                              "offset": 313,
+                            },
+                            "internal_type": "Identifier",
+                            "roles": Array [
+                              18,
+                              1,
+                              93,
+                              102,
+                            ],
+                            "start_position": Object {
+                              "col": 67,
+                              "line": 10,
+                              "offset": 307,
+                            },
+                            "token": "schema",
+                          },
+                          Object {
+                            "children": Array [],
+                            "end_position": Object {
+                              "col": 73,
+                              "line": 10,
+                              "offset": 313,
+                            },
+                            "internal_type": "Identifier",
+                            "roles": Array [
+                              18,
+                              1,
+                              93,
+                              50,
+                            ],
+                            "start_position": Object {
+                              "col": 67,
+                              "line": 10,
+                              "offset": 307,
+                            },
+                            "token": "schema",
+                          },
+                        ],
+                        "end_position": Object {
+                          "col": 73,
+                          "line": 10,
+                          "offset": 313,
+                        },
+                        "internal_type": "ObjectProperty",
+                        "roles": Array [
+                          93,
+                        ],
+                        "start_position": Object {
+                          "col": 67,
+                          "line": 10,
+                          "offset": 307,
+                        },
+                        "token": "",
+                      },
+                    ],
+                    "end_position": Object {
+                      "col": 75,
+                      "line": 10,
+                      "offset": 315,
+                    },
+                    "internal_type": "ObjectExpression",
+                    "roles": Array [
+                      18,
+                      68,
+                      93,
+                      88,
+                      84,
+                      49,
+                    ],
+                    "start_position": Object {
+                      "col": 65,
+                      "line": 10,
+                      "offset": 305,
+                    },
+                    "token": "",
+                  },
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 30,
+                      "line": 11,
+                      "offset": 348,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                      84,
+                      49,
+                    ],
+                    "start_position": Object {
+                      "col": 19,
+                      "line": 11,
+                      "offset": 337,
+                    },
+                    "token": "/graphiql",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "children": Array [
+                          Object {
+                            "children": Array [],
+                            "end_position": Object {
+                              "col": 61,
+                              "line": 11,
+                              "offset": 379,
+                            },
+                            "internal_type": "Identifier",
+                            "roles": Array [
+                              18,
+                              1,
+                              93,
+                              102,
+                            ],
+                            "start_position": Object {
+                              "col": 50,
+                              "line": 11,
+                              "offset": 368,
+                            },
+                            "token": "endpointURL",
+                          },
+                          Object {
+                            "children": Array [],
+                            "end_position": Object {
+                              "col": 73,
+                              "line": 11,
+                              "offset": 391,
+                            },
+                            "internal_type": "StringLiteral",
+                            "roles": Array [
+                              18,
+                              88,
+                              98,
+                              93,
+                              50,
+                            ],
+                            "start_position": Object {
+                              "col": 63,
+                              "line": 11,
+                              "offset": 381,
+                            },
+                            "token": "/graphql",
+                          },
+                        ],
+                        "end_position": Object {
+                          "col": 73,
+                          "line": 11,
+                          "offset": 391,
+                        },
+                        "internal_type": "ObjectProperty",
+                        "roles": Array [
+                          93,
+                        ],
+                        "start_position": Object {
+                          "col": 50,
+                          "line": 11,
+                          "offset": 368,
+                        },
+                        "token": "",
+                      },
+                    ],
+                    "end_position": Object {
+                      "col": 75,
+                      "line": 11,
+                      "offset": 393,
+                    },
+                    "internal_type": "ObjectExpression",
+                    "roles": Array [
+                      18,
+                      68,
+                      93,
+                      88,
+                      84,
+                      49,
+                    ],
+                    "start_position": Object {
+                      "col": 48,
+                      "line": 11,
+                      "offset": 366,
+                    },
+                    "token": "",
+                  },
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 73,
+                      "line": 11,
+                      "offset": 391,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                      93,
+                      50,
+                    ],
+                    "start_position": Object {
+                      "col": 63,
+                      "line": 11,
+                      "offset": 381,
+                    },
+                    "token": "/graphql",
+                  },
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 40,
+                      "line": 13,
+                      "offset": 437,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                    ],
+                    "start_position": Object {
+                      "col": 27,
+                      "line": 13,
+                      "offset": 424,
+                    },
+                    "token": "listen-port",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "children": Array [],
+                        "end_position": Object {
+                          "col": 60,
+                          "line": 14,
+                          "offset": 505,
+                        },
+                        "internal_type": "TemplateElement",
+                        "roles": Array [
+                          98,
+                          18,
+                          50,
+                          109,
+                        ],
+                        "start_position": Object {
+                          "col": 16,
+                          "line": 14,
+                          "offset": 461,
+                        },
+                        "token": "",
+                      },
+                      Object {
+                        "children": Array [
+                          Object {
+                            "children": Array [],
+                            "end_position": Object {
+                              "col": 66,
+                              "line": 14,
+                              "offset": 511,
+                            },
+                            "internal_type": "Identifier",
+                            "roles": Array [
+                              18,
+                              1,
+                            ],
+                            "start_position": Object {
+                              "col": 62,
+                              "line": 14,
+                              "offset": 507,
+                            },
+                            "token": "args",
+                          },
+                          Object {
+                            "children": Array [],
+                            "end_position": Object {
+                              "col": 80,
+                              "line": 14,
+                              "offset": 525,
+                            },
+                            "internal_type": "StringLiteral",
+                            "roles": Array [
+                              18,
+                              88,
+                              98,
+                            ],
+                            "start_position": Object {
+                              "col": 67,
+                              "line": 14,
+                              "offset": 512,
+                            },
+                            "token": "listen-port",
+                          },
+                        ],
+                        "end_position": Object {
+                          "col": 81,
+                          "line": 14,
+                          "offset": 526,
+                        },
+                        "internal_type": "MemberExpression",
+                        "roles": Array [
+                          2,
+                          18,
+                          1,
+                        ],
+                        "start_position": Object {
+                          "col": 62,
+                          "line": 14,
+                          "offset": 507,
+                        },
+                        "token": "",
+                      },
+                      Object {
+                        "children": Array [],
+                        "end_position": Object {
+                          "col": 91,
+                          "line": 14,
+                          "offset": 536,
+                        },
+                        "internal_type": "TemplateElement",
+                        "roles": Array [
+                          98,
+                          18,
+                          50,
+                          109,
+                        ],
+                        "start_position": Object {
+                          "col": 82,
+                          "line": 14,
+                          "offset": 527,
+                        },
+                        "token": "",
+                      },
+                    ],
+                    "end_position": Object {
+                      "col": 92,
+                      "line": 14,
+                      "offset": 537,
+                    },
+                    "internal_type": "TemplateLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                      109,
+                      84,
+                      49,
+                    ],
+                    "start_position": Object {
+                      "col": 15,
+                      "line": 14,
+                      "offset": 460,
+                    },
+                    "token": "",
+                  },
+                  Object {
+                    "children": Array [],
+                    "end_position": Object {
+                      "col": 80,
+                      "line": 14,
+                      "offset": 525,
+                    },
+                    "internal_type": "StringLiteral",
+                    "roles": Array [
+                      18,
+                      88,
+                      98,
+                    ],
+                    "start_position": Object {
+                      "col": 67,
+                      "line": 14,
+                      "offset": 512,
+                    },
+                    "token": "listen-port",
+                  },
+                ],
+              },
+            ],
+          },
+          "isTag": true,
+          "name": "refs/tags/v0.0.1",
+        },
+      ],
+    },
+  },
+}
+`;
+
 exports[`Integration Test Queries query: gitbase-graphql 0.0.2 commits 1`] = `
 Object {
   "data": Object {
