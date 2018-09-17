@@ -101,7 +101,7 @@ You can use the raw functionality offered by Babelfish using `uastRaw`. Continue
 
 ```graphql
 {
-  repository(id: "/opt/repos/gitbase-web") {
+  repository(id: "gitbase-web") {
     id
     refs(name: "HEAD") {
       commit {
@@ -119,7 +119,7 @@ You can use the raw functionality offered by Babelfish using `uastRaw`. Continue
 
 ```graphql
 {
-  repository(id: "/opt/repos/gitbase-web") {
+  repository(id: "gitbase-web") {
     id
     refs(name: "HEAD") {
       commit {
@@ -143,7 +143,7 @@ _Note_: each children level has to be queried explicitly. Although you cannot qu
 
 ```graphql
 {
-  repository(id: "/opt/repos/gitbase-web") {
+  repository(id: "gitbase-web") {
     id
     refs(name: "HEAD") {
       commit {
@@ -193,7 +193,7 @@ Instead of setting a filter for each level of the query, you can use the `flat` 
 ```graphql
 # All the imports done in App.js
 {
-  repository(id: "/opt/repos/gitbase-web") {
+  repository(id: "gitbase-web") {
     id
     refs(name: "HEAD") {
       commit {
@@ -215,7 +215,7 @@ Instead of setting a filter for each level of the query, you can use the `flat` 
 
 ```graphql
 {
-  repository(id: "/opt/repos/gitbase-web") {
+  repository(id: "gitbase-web") {
     id
     refs(name: "HEAD") {
       commit {
