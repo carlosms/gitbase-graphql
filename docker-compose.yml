@@ -18,18 +18,7 @@ services:
     volumes:
       - ${GITBASE_GQL_REPOS_FOLDER}:/opt/repos
   bblfsh:
-    image: "bblfsh/bblfshd:v2.6.1"
+    image: "bblfsh/bblfshd:v2.9.0-drivers"
     privileged: true
     ports:
       - "9432:9432"
-    volumes:
-      - type: volume
-        source: drivers
-        target: /var/lib/bblfshd
-    entrypoint: ["/bin/sh"]
-    command:
-    - "-c"
-    - "bblfshd & sleep 1 && bblfshctl driver install --recommended --update && tail -f /dev/null"
-
-volumes:
-  drivers:

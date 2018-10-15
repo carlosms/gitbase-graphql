@@ -11,14 +11,6 @@ export GITBASE_GQL_REPOS_FOLDER=$REPOS_FOLDER
 docker-compose up -d --force-recreate gitbase bblfsh
 
 echo
-echo "Waiting for bblfsh javascript driver to be installed..."
-while ! docker exec -it `docker-compose ps -q bblfsh` bblfshctl driver list | grep javascript; do
-    sleep 1
-    echo "."
-done
-sleep 3s
-
-echo
 echo "Running jest tests..."
 npx jest --coverage --detectOpenHandles --forceExit
 RC=$?
